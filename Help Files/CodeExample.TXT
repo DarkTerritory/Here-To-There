@@ -1,0 +1,36 @@
+    Private Sub PopCode1099(ByVal Colm As DataGridViewComboBoxColumn)
+        Dim Cnn As SqlClient.SqlConnection = Nothing
+        Dim Cmd As SqlClient.SqlCommand = Nothing
+        Dim Rst As SqlClient.SqlDataAdapter = Nothing
+        Dim CmdType As CommandType = CommandType.StoredProcedure
+        Dim dSet As DataSet = Nothing
+        Dim dTable As DataTable = Nothing
+        Try
+            Cnn = New SqlClient.SqlConnection(ConnString)
+            If Cmd Is Nothing Then Cmd = New SqlClient.SqlCommand
+            Cmd.Connection = Cnn
+            Cmd.CommandType = CmdType
+            Cmd.CommandText = "cst_1099_Lookup"
+            If Cnn.State <> ConnectionState.Open Then Cnn.Open()
+            Rst = New SqlClient.SqlDataAdapter(Cmd)
+            dSet = New DataSet
+            Rst.Fill(dSet, "dt1099")
+            dTable = New DataTable
+            dTable = dSet.Tables("dt1099")
+            Colm.DataSource = dTable
+            Colm.DisplayMember = "Display"    '"Code1099"    
+            Colm.ValueType = GetType(System.Decimal)
+            Colm.ValueMember = "Code1099" '"Display" 
+        Catch Ex As Exception
+            Ex.Source = System.Reflection.MethodBase.GetCurrentMethod.Name
+            ErrorLog(Err.Number, Err.Description, Me.Name, Ex.Source, Err.Erl)
+        Finally
+            dSet = Nothing
+            dTable = Nothing
+            CmdType = Nothing
+            Rst = Nothing
+            Cmd = Nothing
+            If Cnn.State <> ConnectionState.Closed Then Cnn.Close()
+            Cnn = Nothing
+        End Try
+    End Sub

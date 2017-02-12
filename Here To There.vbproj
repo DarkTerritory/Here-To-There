@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{08B44B02-C414-4D13-BB99-682D2931911E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Here_To_There.My.MyApplication</StartupObject>
+    <RootNamespace>Here_To_There</RootNamespace>
+    <AssemblyName>Here To There</AssemblyName>
+    <MyType>WindowsForms</MyType>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetZone>LocalIntranet</TargetZone>
+    <GenerateManifests>true</GenerateManifests>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ManifestCertificateThumbprint>C6CD737EE416C0C7EF147CB37E749DE737E92623</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Here To There_TemporaryKey.pfx</ManifestKeyFile>
+    <SignManifests>false</SignManifests>
+    <ApplicationIcon>H2T64.ico</ApplicationIcon>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <PublishUrl>C:\Program Files\AmesvilleShops\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>0.0.0.1</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Here To There.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Here To There.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>Here To There.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>Here To There.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.104.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\WINDOWS\assembly\GAC_MSIL\System.Web.Services\2.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Here_To_There" />
+    <Import Include="Here_To_There.My" />
+    <Import Include="Here_To_There.My.Resources" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CboItemValue.vb" />
+    <Compile Include="clsErrorLog.vb" />
+    <Compile Include="clsSQLiteDB.vb" />
+    <Compile Include="DataAccess_Build.vb" />
+    <Compile Include="DataAccess_Fill.vb" />
+    <Compile Include="DataAccess_Get.vb" />
+    <Compile Include="DataAccess_LI.vb" />
+    <Compile Include="DataAccess_Maintenance.vb" />
+    <Compile Include="DataAccess_Misc.vb" />
+    <Compile Include="DataAccess_Waybill.vb" />
+    <Compile Include="frmBuildThruWBs.Designer.vb">
+      <DependentUpon>frmBuildThruWBs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmBuildThruWBs.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMatchup.Designer.vb">
+      <DependentUpon>frmMatchup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMatchup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOptions.Designer.vb">
+      <DependentUpon>frmOptions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmOptions.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRegionMap.Designer.vb">
+      <DependentUpon>frmRegionMap.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRegionMap.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGenerate.Designer.vb">
+      <DependentUpon>frmGenerate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGenerate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImport.Designer.vb">
+      <DependentUpon>frmImport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmImport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaintInt.Designer.vb">
+      <DependentUpon>frmMaintInt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaintInt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaintCarType.Designer.vb">
+      <DependentUpon>frmMaintCarType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaintCarType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaintComm.Designer.vb">
+      <DependentUpon>frmMaintComm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaintComm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaintDiv.Designer.vb">
+      <DependentUpon>frmMaintDiv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaintDiv.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaintInd.Designer.vb">
+      <DependentUpon>frmMaintInd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaintInd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaintMyRR.Designer.vb">
+      <DependentUpon>frmMaintMyRR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaintMyRR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLocalInd.Designer.vb">
+      <DependentUpon>frmLocalInd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLocalInd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaintRegion.Designer.vb">
+      <DependentUpon>frmMaintRegion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaintRegion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaintRRNames.Designer.vb">
+      <DependentUpon>frmMaintRRNames.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaintRRNames.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaintSiding.Designer.vb">
+      <DependentUpon>frmMaintSiding.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaintSiding.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaintStaging.Designer.vb">
+      <DependentUpon>frmMaintStaging.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaintStaging.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaintState.Designer.vb">
+      <DependentUpon>frmMaintState.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaintState.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaintTown.Designer.vb">
+      <DependentUpon>frmMaintTown.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaintTown.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaintTrain.Designer.vb">
+      <DependentUpon>frmMaintTrain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaintTrain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaintTrWork.Designer.vb">
+      <DependentUpon>frmMaintTrWork.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaintTrWork.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectPartner.Designer.vb">
+      <DependentUpon>frmSelectPartner.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectPartner.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmShipOrRecv.Designer.vb">
+      <DependentUpon>frmShipOrRecv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmShipOrRecv.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTrainAssign.Designer.vb">
+      <DependentUpon>frmTrainAssign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTrainAssign.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWBCatalog.Designer.vb">
+      <DependentUpon>frmWBCatalog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmWBCatalog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HereToThere.vb" />
+    <Compile Include="HTTSplash.Designer.vb">
+      <DependentUpon>HTTSplash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HTTSplash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="WaitCursor.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmBuildThruWBs.resx">
+      <DependentUpon>frmBuildThruWBs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMatchup.resx">
+      <DependentUpon>frmMatchup.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOptions.resx">
+      <DependentUpon>frmOptions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegionMap.resx">
+      <DependentUpon>frmRegionMap.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGenerate.resx">
+      <DependentUpon>frmGenerate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImport.resx">
+      <DependentUpon>frmImport.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaintInt.resx">
+      <DependentUpon>frmMaintInt.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaintCarType.resx">
+      <DependentUpon>frmMaintCarType.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaintComm.resx">
+      <DependentUpon>frmMaintComm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaintDiv.resx">
+      <DependentUpon>frmMaintDiv.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaintInd.resx">
+      <DependentUpon>frmMaintInd.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaintMyRR.resx">
+      <DependentUpon>frmMaintMyRR.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLocalInd.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmLocalInd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaintRegion.resx">
+      <DependentUpon>frmMaintRegion.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaintRRNames.resx">
+      <DependentUpon>frmMaintRRNames.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaintSiding.resx">
+      <DependentUpon>frmMaintSiding.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaintStaging.resx">
+      <DependentUpon>frmMaintStaging.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaintState.resx">
+      <DependentUpon>frmMaintState.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaintTown.resx">
+      <DependentUpon>frmMaintTown.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaintTrain.resx">
+      <DependentUpon>frmMaintTrain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaintTrWork.resx">
+      <DependentUpon>frmMaintTrWork.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectPartner.resx">
+      <DependentUpon>frmSelectPartner.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmShipOrRecv.resx">
+      <DependentUpon>frmShipOrRecv.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTrainAssign.resx">
+      <DependentUpon>frmTrainAssign.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWBCatalog.resx">
+      <DependentUpon>frmWBCatalog.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HTTSplash.resx">
+      <DependentUpon>HTTSplash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\DataSources\Here_To_There.My.MyApplication.datasource" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="BusinessObjects.CrystalReports.10.5">
+      <Visible>False</Visible>
+      <ProductName>Crystal Reports Basic for Visual Studio 2008 %28x86, x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Sql.Server.Express.9.2">
+      <Visible>False</Visible>
+      <ProductName>SQL Server 2005 Express Edition SP2 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="External\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3924545A-F8E2-475A-B1A4-05175BC41E50}" />
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Here To There_TemporaryKey.pfx" />
+    <None Include="Images\districts.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="H2T64.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
