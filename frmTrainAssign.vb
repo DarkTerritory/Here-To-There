@@ -1,8 +1,4 @@
-﻿Imports System
-Imports System.Data
-Imports System.Data.OleDb
-
-Public Class frmTrainAssign
+﻿Public Class frmTrainAssign
 
 
     Private dtTrainList As New DataTable
@@ -266,6 +262,9 @@ Public Class frmTrainAssign
 
     Private Sub frmTrainAssign_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        'Set the window Title with the Active RR
+        Me.Text = "Create - Assign In-Bound Waybills To Trains - " & gsMyRRName
+
         dtTrainList = DataAccess_Get.spGetTrainList
 
     End Sub
@@ -275,7 +274,7 @@ Public Class frmTrainAssign
         If Not dgvWbAssigned.Rows.Count <= 0 Then
 
             mbResponse = MsgBox("Are you sure you want to remove this waybill from the train and return it to the Catalog?", MsgBoxStyle.YesNo + MsgBoxStyle.Question, "Remove Waybill From Train?")
-            If mbResponse = Windows.Forms.DialogResult.No Then Exit Sub
+            If mbResponse = DialogResult.No Then Exit Sub
 
             DataAccess_Misc.spTrAssnDelWB(dgvWbAssigned.CurrentRow.Cells("WaybillID").Value)
 

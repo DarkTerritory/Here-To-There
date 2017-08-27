@@ -22,36 +22,32 @@ Partial Class frmReportView
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmReportView))
-        Me.AAR_Region1 = New Here_To_There.AAR_Region
-        Me.HereToThereReportViewer = New CrystalDecisions.Windows.Forms.CrystalReportViewer
+        Me.crvReport = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
         Me.SuspendLayout()
         '
-        'HereToThereReportViewer
+        'crvReport
         '
-        Me.HereToThereReportViewer.ActiveViewIndex = -1
-        Me.HereToThereReportViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.HereToThereReportViewer.Cursor = System.Windows.Forms.Cursors.Default
-        Me.HereToThereReportViewer.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.HereToThereReportViewer.Location = New System.Drawing.Point(0, 0)
-        Me.HereToThereReportViewer.Name = "HereToThereReportViewer"
-        Me.HereToThereReportViewer.Size = New System.Drawing.Size(909, 632)
-        Me.HereToThereReportViewer.TabIndex = 0
+        Me.crvReport.ActiveViewIndex = -1
+        Me.crvReport.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.crvReport.Cursor = System.Windows.Forms.Cursors.Default
+        Me.crvReport.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.crvReport.Location = New System.Drawing.Point(0, 0)
+        Me.crvReport.Name = "crvReport"
+        Me.crvReport.Size = New System.Drawing.Size(514, 507)
+        Me.crvReport.TabIndex = 0
+        Me.crvReport.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
         '
         'frmReportView
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(909, 632)
-        Me.Controls.Add(Me.HereToThereReportViewer)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.ClientSize = New System.Drawing.Size(514, 507)
+        Me.Controls.Add(Me.crvReport)
         Me.Name = "frmReportView"
-        Me.Text = "Here to There Report:"
+        Me.Text = "Report Viewer"
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents IndByStateWComms1 As Here_To_There.IndByStateWComms
-    Friend WithEvents CommBalance1 As Here_To_There.CommBalance
-    Friend WithEvents AAR_Region1 As Here_To_There.AAR_Region
-    Friend WithEvents HereToThereReportViewer As CrystalDecisions.Windows.Forms.CrystalReportViewer
+
+    Friend WithEvents crvReport As CrystalReportViewer
 End Class

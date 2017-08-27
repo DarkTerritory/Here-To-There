@@ -1,6 +1,4 @@
-﻿Imports System
-
-Public Class WaitCursor
+﻿Public Class WaitCursor
     Implements IDisposable
 
     Public Sub New()
@@ -14,6 +12,7 @@ Public Class WaitCursor
         Next
     End Sub
 
+    <CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly")>
     Public Sub Dispose() Implements IDisposable.Dispose
         ' Class must implement Idisposable.Dispose() so that
         ' Using construct may be employed

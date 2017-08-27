@@ -1,6 +1,4 @@
-﻿Imports System
-Imports System.IO
-Imports System.Data
+﻿Imports System.IO
 Imports System.Environment
 
 Public Module clsErrorLog

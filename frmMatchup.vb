@@ -1,8 +1,4 @@
-﻿Imports System
-Imports System.Data
-Imports System.Data.SqlClient
-
-Public Class frmMatchup
+﻿Public Class frmMatchup
 
     Private dtLocalInd As New DataTable
     Private dtInterchange As New DataTable
@@ -57,7 +53,7 @@ Public Class frmMatchup
     End Sub
 
 
-    Private Sub dgvSelInd_CellContentDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvSelInd.CellContentDoubleClick
+    Private Sub dgvSelInd_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvSelInd.CellDoubleClick
 
         Dim oDlgResult As DialogResult
 
@@ -80,6 +76,7 @@ Public Class frmMatchup
 
             Else ' Any other result default to Shipper
                 msShipRecv = "Shipper"
+                'TODO: Change ANY above to FAK - Freight All Kinds
 
             End If
 
@@ -188,20 +185,22 @@ Public Class frmMatchup
         lblSecRR.Text = msSelectedPartner(4).ToString
 
         If LCase(lblCommodity.Text) <> LCase(msSelectedPartner(5).ToString) Then
-            mbResponse = MsgBox("The selected receiver has a different Commodity Type (" & _
-                msSelectedPartner(5).ToString & ") than the shipper (" & _
-                lblCommodity.Text & "). Click Yes to keep the shipper's commodity or No " & _
-                "to take the new one.", MsgBoxStyle.Information + MsgBoxStyle.YesNo, "Commodity Change")
-            If mbResponse = Windows.Forms.DialogResult.No Then
+            mbResponse = MsgBox("The selected receiver has a different Commodity Type (" &
+                msSelectedPartner(5).ToString & ") than the shipper (" &
+                lblCommodity.Text & "). " & vbCrLf & vbCrLf & "Click Yes to use '" &
+                lblCommodity.Text & "' or No use '" & msSelectedPartner(5).ToString & "'.",
+                MsgBoxStyle.Information + MsgBoxStyle.YesNo, "Commodity Change")
+            If mbResponse = DialogResult.No Then
                 lblCommodity.Text = msSelectedPartner(5).ToString
             End If
         End If
 
         If LCase(lblCommodity.Text) = "any" Then
-            mbResponse = MsgBox("The Primary Industry has a Commodity Type of Any. " & _
-                "Change it to the more specific Secondary commodity (" & _
+            mbResponse = MsgBox("The Primary Industry has a Commodity Type of Any. " &
+                "Change it to the more specific Secondary commodity (" &
                 msSelectedPartner(5).ToString & ")?", MsgBoxStyle.Information + MsgBoxStyle.YesNo, "Commodity Change")
-            If mbResponse = Windows.Forms.DialogResult.Yes Then
+            'TODO: Change ANY above to FAK - Freight All Kinds
+            If mbResponse = DialogResult.Yes Then
                 lblCommodity.Text = msSelectedPartner(5).ToString ' TODO: Is this working?
             End If
         End If
@@ -213,9 +212,9 @@ Public Class frmMatchup
                 lblSecDivision.BackColor = Color.White
                 lblSecServedBy.BackColor = Color.White
                 lblSecTownCd.Text = DataAccess_Get.spGetTownCallSign(msSelectedPartner(2).ToString)
-                lblSecSiding.Text = GetSidingNotes(msSelectedPartner(7).ToString)
-                lblSecDivision.Text = GetDivisionName(msSelectedPartner(2).ToString)
-                lblSecServedByCd.Text = GetFreightHub(msSelectedPartner(2).ToString)
+                lblSecSiding.Text = DataAccess_Get.spGetSidingNotes(msSelectedPartner(7).ToString)
+                lblSecDivision.Text = DataAccess_Get.spGetDivName(msSelectedPartner(2).ToString)
+                lblSecServedByCd.Text = DataAccess_Get.spGetFrtHub(msSelectedPartner(2).ToString)
                 lblSecServedBy.Text = DataAccess_Get.spGetTownName(GetFreightHub(msSelectedPartner(2).ToString))
                 If msSelectedPartner(8).ToString <> "" Then
                     txtWbNotes.Text += msSelectedPartner(8).ToString & vbNewLine
@@ -238,7 +237,7 @@ Public Class frmMatchup
     Private Sub cmdClearFields_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdClearFields.Click
 
         mbResponse = MsgBox("Are you sure you want to clear all data fields and start again?", MsgBoxStyle.YesNo + MsgBoxStyle.Question)
-        If mbResponse = Windows.Forms.DialogResult.No Then Exit Sub
+        If mbResponse = DialogResult.No Then Exit Sub
 
         ClearFields()
 
@@ -434,22 +433,24 @@ Public Class frmMatchup
         If msShipRecv = "Shipper" Then
             'If either the Primary or Secondary RR matches the Interchange With value, just use the Pri & Sec
             If lblSecRR.Text = msInterchangeRR Or lblPriRR.Text = msInterchangeRR Then
+                gbRouting.Text = EscapeAmpersands(lblPriRR.Text & " > " & lblSecRR.Text)
                 msRouteVia = lblPriRR.Text & " > " & lblSecRR.Text
             Else
+                gbRouting.Text = EscapeAmpersands(lblPriRR.Text & " > " & msInterchangeRR & " > " & lblSecRR.Text)
                 msRouteVia = lblPriRR.Text & " > " & msInterchangeRR & " > " & lblSecRR.Text
             End If
 
         Else ' Receiver
             'If either the Primary or Secondary RR matches the Interchange With value, just use the Pri & Sec
             If lblSecRR.Text = msInterchangeRR Or lblPriRR.Text = msInterchangeRR Then
+                gbRouting.Text = EscapeAmpersands(lblSecRR.Text & " > " & lblPriRR.Text)
                 msRouteVia = lblSecRR.Text & " > " & lblPriRR.Text
             Else
+                gbRouting.Text = EscapeAmpersands(lblSecRR.Text & " > " & msInterchangeRR & " > " & lblPriRR.Text)
                 msRouteVia = lblSecRR.Text & " > " & msInterchangeRR & " > " & lblPriRR.Text
             End If
 
         End If
-
-        gbRouting.Text += msRouteVia
 
     End Sub
 
@@ -467,10 +468,13 @@ Public Class frmMatchup
 
     Private Sub frmMatchup_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        'Set the window Title with the Active RR
+        Me.Text = "Catalog - Match Local Industries With Partners - " & gsMyRRName
+
         dtStaging = DataAccess_Get.spGetStagingAreas
         cboStaging.DataSource = dtStaging
-        cboStaging.DisplayMember = "lkDesc"
-        cboStaging.ValueMember = "lkCode"
+        cboStaging.DisplayMember = "StagingDesc"
+        cboStaging.ValueMember = "StagingCode"
 
         'Set Tooltip parameters
         ttpMatchup.AutoPopDelay = 2000
@@ -485,7 +489,7 @@ Public Class frmMatchup
 
     Private Sub ClearFields()
 
-        Dim ctrl As Windows.Forms.Control
+        Dim ctrl As Control
 
         For Each ctrl In Me.Controls
             If Mid(ctrl.Name, 1, 3) = "lbl" Then
@@ -540,6 +544,51 @@ Public Class frmMatchup
         Me.Close()
 
     End Sub
+
+    Private Sub dgvSelInd_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles dgvSelInd.CellFormatting
+
+        Dim drv As DataRowView
+        If e.RowIndex >= 0 Then
+            If e.RowIndex <= dtLocalInd.Rows.Count - 1 Then
+                drv = dtLocalInd.DefaultView.Item(e.RowIndex)
+                Dim c As Color
+                If drv.Item("CatPrimarySR").ToString = "Shipper" Then
+                    c = Color.Wheat
+                ElseIf drv.Item("CatPrimarySR").ToString = "Receiver" Then
+                    c = Color.LightYellow
+                ElseIf drv.Item("CatPrimarySR").ToString = "Both" Then
+                    c = Color.Lavender
+                Else
+                    c = Color.White
+
+                End If
+                e.CellStyle.BackColor = c
+            End If
+        End If
+
+    End Sub
+
+
+    Private Function EscapeAmpersands(RawString As String) As String
+
+        Dim FormattedString As String = ""
+        Dim X As Integer
+
+
+        For X = 1 To Len(RawString)
+
+            If Mid(RawString, X, 1) <> "&" Then
+                FormattedString += Mid(RawString, X, 1)
+            Else
+                FormattedString += "&&"
+
+            End If
+
+        Next
+
+        EscapeAmpersands = FormattedString
+
+    End Function
 
 
 End Class

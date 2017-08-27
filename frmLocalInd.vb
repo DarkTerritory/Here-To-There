@@ -1,8 +1,3 @@
-Imports System
-Imports System.Data
-Imports System.Data.OleDb
-
-
 Public Class frmLocalInd
 
     Private dtSelectInds As DataTable
@@ -472,7 +467,7 @@ Public Class frmLocalInd
         sVal = ""
 
         'Check to see if this row already has an allocated value
-        sVal = DataAccess_Misc.spCheckPriorCLICVal(sSelectedCLIC) 'TODO: Copy over this procedure to the MISC group
+        sVal = DataAccess_Misc.spCheckPriorCLICVal(sSelectedCLIC)
         If Not sVal = "" Then
             mbResponse = MsgBox("This industry / commodity set is already in the catalog. However, " & _
                 "it may call for a different car type, customer or number of loads. " & vbNewLine & vbNewLine & _
@@ -481,7 +476,7 @@ Public Class frmLocalInd
                 "different car types / numbers of carloads. " & vbNewLine & vbNewLine & _
                 "Click Yes to add add it again or No abort the request.", MsgBoxStyle.YesNo, _
                 "Add another Industry / Commodity pair of the same type?")
-            If mbResponse = Windows.Forms.DialogResult.No Then
+            If mbResponse = DialogResult.No Then
                 Exit Sub
 
             End If
@@ -578,6 +573,9 @@ Public Class frmLocalInd
 
 
     Private Sub frmLocalInd_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        'Set the window Title with the Active RR
+        Me.Text = "Catalog - Select Local Industries - " & gsMyRRName
 
         dtFrequency = DataAccess_Fill.spFillLookupDT("Frequency")
         cboFrequency.DataSource = dtFrequency

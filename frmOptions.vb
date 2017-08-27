@@ -41,8 +41,8 @@
         End If
 
         'Set the value of the screen size in the Registry key
-        SetRegValue(gsKeyPath, "ScreenHeight", iScreenHeight)
-        SetRegValue(gsKeyPath, "ScreenWidth", iScreenWidth)
+        'SetRegValue(gsKeyPath, "ScreenHeight", iScreenHeight)
+        'SetRegValue(gsKeyPath, "ScreenWidth", iScreenWidth)
 
         'Set the screen size if it isn't already set
         If frmMain.Height <> iScreenHeight Then frmMain.Height = iScreenHeight

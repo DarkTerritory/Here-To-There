@@ -10,66 +10,55 @@ Module DataAccess_Build
 
     End Function
 
+    <CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")>
     Public Function spBuildCatForTrain(ByVal StagingAreaName As String, ByVal TrainType As String, ByVal TrainName As String, ByVal PageMode As Integer) As DataTable
 
         Dim sSQL As String = ""
         Dim sSQL1 As String
         Dim sSQL2 As String
-        Dim daFillDt As SQLiteDataAdapter
         Dim dt As New DataTable
 
 
         If PageMode = "1" Then
 
             sSQL = "SELECT COUNT(*) FROM LoadRestrict WHERE lrTrainType = '" & TrainType & "';"
-            daFillDt = New SQLiteDataAdapter(sSQL, cnHTT)
-            If cnHTT.State <> ConnectionState.Open Then cnHTT.Open()
-            daFillDt.Fill(dt)
-            If cnHTT.State <> ConnectionState.Closed Then cnHTT.Close()
+            dt = clsSQLiteDB.GetDataTable(sSQL, cnHTT)
             If Not dt Is Nothing Then
 
-                sSQL1 = "SELECT CatalogID, ABS(RANDOM() % 1000) AS RandID FROM Catalog Cat " & _
-                    "WHERE Cat.SessionSelect NOT IN ('N', 'S', 'Y') AND RRID = '" & gsMyRR_ID & "' " & _
+                sSQL1 = "SELECT CatalogID, ABS(RANDOM() % 1000) AS RandID FROM Catalog Cat " &
+                    "WHERE Cat.SessionSelect NOT IN ('N', 'S', 'Y') AND RRID = '" & gsMyRR_ID & "' " &
                     "AND Cat.CatComm NOT IN (SELECT LrCommodity FROM LoadRestrict WHERE lrTrainType = '" & TrainType & "')"
                 sSQL2 = "AND Cat.RouteIntDir = '" & StagingAreaName & "'"
 
-                sSQL = sSQL1 & " AND Cat.PrintLoadSide1 = 'Y' AND Cat.RouteIntOffAt = '' " & sSQL2 & " UNION " & _
-                    sSQL1 & " AND Cat.PrintLoadSide1 = 'N' AND Cat.RouteIntOnAt = ''" & _
+                sSQL = sSQL1 & " AND Cat.PrintLoadSide1 = 'Y' AND Cat.RouteIntOffAt = '' " & sSQL2 & " UNION " &
+                    sSQL1 & " AND Cat.PrintLoadSide1 = 'N' AND Cat.RouteIntOnAt = ''" &
                     "AND Cat.RouteVerso <> 'Start at Industry' " & sSQL2 & " ORDER BY RandID;"
 
             Else
 
-                sSQL1 = "SELECT CatalogID, ABS(RANDOM() % 1000) AS RandID  FROM Catalog Cat WHERE Cat.SessionSelect NOT IN ('N', 'S', 'Y') " & _
+                sSQL1 = "SELECT CatalogID, ABS(RANDOM() % 1000) AS RandID  FROM Catalog Cat WHERE Cat.SessionSelect NOT IN ('N', 'S', 'Y') " &
                     "AND RRID = '" & gsMyRR_ID & "' AND Cat.PrintLoadSide1 = "
                 sSQL2 = "AND Cat.RouteIntDir = '" & StagingAreaName & "'"
 
-                sSQL = sSQL1 & "'Y' AND Cat.RouteIntOffAt = '' " & sSQL2 & " UNION " & sSQL1 & _
+                sSQL = sSQL1 & "'Y' AND Cat.RouteIntOffAt = '' " & sSQL2 & " UNION " & sSQL1 &
                     "'N' AND Cat.RouteIntOnAt = '' AND Cat.RouteVerso <> 'Start at Industry' " & sSQL2 & " ORDER BY RandID;"
             End If
 
         ElseIf PageMode = "2" Then
 
-            sSQL = "SELECT CatalogID,  ABS(RANDOM() % 1000) AS RandID  FROM Catalog cat WHERE Cat.SessionSelect NOT IN ('N', 'S', 'Y')" & _
+            sSQL = "SELECT CatalogID,  ABS(RANDOM() % 1000) AS RandID  FROM Catalog cat WHERE Cat.SessionSelect NOT IN ('N', 'S', 'Y')" &
                 " AND RRID = '" & gsMyRR_ID & "' AND Cat.RouteVerso = 'Through' AND Cat.RouteIntDir = '" & StagingAreaName & "' ORDER BY RandID;"
 
 
 
         ElseIf PageMode = "3" Then
 
-            sSQL = "SELECT CatalogID,  ABS(RANDOM() % 1000) AS RandID  FROM Catalog cat WHERE Cat.SessionSelect NOT IN ('N', 'S', 'Y')" & _
+            sSQL = "SELECT CatalogID,  ABS(RANDOM() % 1000) AS RandID  FROM Catalog cat WHERE Cat.SessionSelect NOT IN ('N', 'S', 'Y')" &
                 " AND RRID = '" & gsMyRR_ID & "' AND Cat.RouteVerso IN ('Freight Agent Select', 'Start at Industry') ORDER BY RandID;"
-
 
         End If
 
-        daFillDt = New SQLiteDataAdapter(sSQL, cnHTT)
-
-
-        If cnHTT.State <> ConnectionState.Open Then cnHTT.Open()
-        daFillDt.Fill(dt)
-        If cnHTT.State <> ConnectionState.Closed Then cnHTT.Close()
-
-        Return dt
+        Return clsSQLiteDB.GetDataTable(sSQL, cnHTT)
 
     End Function
 
@@ -138,7 +127,7 @@ Module DataAccess_Build
     End Function
 
 
-    Public Function spBuildSingleCatRecord(ByVal CatalogID As String) As DataTable
+     Public Function spBuildSingleCatRecord(ByVal CatalogID As String) As DataTable
 
         Dim sSQL As String = "SELECT * FROM Catalog WHERE CatalogID = '" & CatalogID & "' AND RRID = '" & gsMyRR_ID & "';"
         Return clsSQLiteDB.GetDataTable(sSQL, cnHTT)
@@ -157,16 +146,34 @@ Module DataAccess_Build
     Public Function spBuildTrainWBCount(ByVal TrainType As String) As DataTable
 
         Dim sSQL As String = ""
+        Dim iRecCount As Integer
 
-        If TrainType = "Local" Then
-            sSQL = "SELECT  Tr.TrID, Tr.TrName, ROUND(Tr.trMaxCars * (Tr.TrPctThru * 0.01)) AS TrCarLimit, wb.WaybillCount, Lk.LkDesc " & _
-                "FROM Train Tr LEFT JOIN (Select TrainAssignment, Count(WayBillId) As WayBillCount From(WayBill) Group By TrainAssignment) As wb " & _
-                "ON tr.TrID = wb.TrainAssignment LEFT JOIN Lookup Lk ON tr.TrFromStagingArea = Lk.Lkcode WHERE Tr.TrOriginateOL = 'Y' AND Lk.LkGroup = 'StagingArea' AND Tr.RRID = '" & gsMyRR_ID & "';"
+        sSQL = "SELECT COUNT(*) FROM Waybill"
+        iRecCount = clsSQLiteDB.ExecuteScalar(sSQL, cnHTT)
 
-        Else ' TrainType = "Thru"
-            sSQL = "SELECT  Tr.TrID, Tr.TrName, Tr.trMaxCars AS TrCarLimit, wb.WaybillCount, Lk.LkDesc " & _
-                "FROM Train Tr LEFT JOIN (Select TrainAssignment, Count(WayBillId) As WayBillCount From(WayBill) Group By TrainAssignment) As wb " & _
-                "ON tr.TrID = wb.TrainAssignment LEFT JOIN Lookup Lk ON tr.TrFromStagingArea = Lk.Lkcode WHERE Tr.TrOriginateOL = 'Y' AND Lk.LkGroup = 'StagingArea' AND RRID = '" & gsMyRR_ID & "';"
+        If iRecCount > 0 Then
+            If TrainType = "Local" Then
+                sSQL = "SELECT  Tr.TrID, Tr.TrName, ROUND(Tr.trMaxCars * (Tr.TrPctThru * 0.01)) AS TrCarLimit, wb.WaybillCount, Lk.LkDesc " &
+                    "FROM Train Tr LEFT JOIN (Select TrainAssignment, Count(WayBillId) As WayBillCount From(WayBill) Group By TrainAssignment) As wb " &
+                    "ON tr.TrID = wb.TrainAssignment LEFT JOIN Lookup Lk ON tr.TrFromStagingArea = Lk.Lkcode WHERE Tr.TrOriginateOL = 'Y' AND Lk.LkGroup = 'StagingArea' AND Tr.RRID = '" & gsMyRR_ID & "';"
+
+            Else ' TrainType = "Thru"
+                sSQL = "SELECT  Tr.TrID, Tr.TrName, Tr.trMaxCars AS TrCarLimit, wb.WaybillCount, Lk.LkDesc " &
+                    "FROM Train Tr LEFT JOIN (Select TrainAssignment, Count(WayBillId) As WayBillCount From(WayBill) Group By TrainAssignment) As wb " &
+                    "ON tr.TrID = wb.TrainAssignment LEFT JOIN Lookup Lk ON tr.TrFromStagingArea = Lk.Lkcode WHERE Tr.TrOriginateOL = 'Y' AND Lk.LkGroup = 'StagingArea' AND RRID = '" & gsMyRR_ID & "';"
+
+            End If
+
+        Else
+            If TrainType = "Local" Then
+                sSQL = "SELECT  Tr.TrID, Tr.TrName, ROUND(Tr.trMaxCars * (Tr.TrPctThru * 0.01)) AS TrCarLimit, 0 AS WaybillCount, Lk.LkDesc " &
+                    "FROM Train Tr LEFT JOIN Lookup Lk ON tr.TrFromStagingArea = Lk.Lkcode WHERE Tr.TrOriginateOL = 'Y' AND Lk.LkGroup = 'StagingArea' AND Tr.RRID = '" & gsMyRR_ID & "';"
+
+            Else ' TrainType = "Thru"
+                sSQL = "SELECT  Tr.TrID, Tr.TrName, Tr.trMaxCars AS TrCarLimit, 0 AS WaybillCount, Lk.LkDesc " &
+                    "FROM Train Tr LEFT JOIN Lookup Lk ON tr.TrFromStagingArea = Lk.Lkcode WHERE Tr.TrOriginateOL = 'Y' AND Lk.LkGroup = 'StagingArea' AND RRID = '" & gsMyRR_ID & "';"
+
+            End If
 
         End If
 

@@ -1,9 +1,4 @@
-﻿Imports System.Windows.Forms
-Imports System
-Imports System.Data
-Imports System.Data.OleDb
-
-Public Class frmWBCatalog
+﻿Public Class frmWBCatalog
 
     Private dtCatalog As New DataTable
     Private dgrCatalog As New DataGridViewRow
@@ -64,6 +59,9 @@ Public Class frmWBCatalog
 
 
     Private Sub frmWBCatalog_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        'Set the window Title with the Active RR
+        Me.Text = "Create - Waybill Catalog - " & gsMyRRName
 
         GetCatalog()
 

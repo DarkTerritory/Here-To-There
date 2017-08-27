@@ -1,6 +1,4 @@
-﻿Imports System.Data.SQLite
-
-Module DataAccess_Waybill
+﻿Module DataAccess_Waybill
 
 
 
@@ -64,9 +62,25 @@ Module DataAccess_Waybill
     End Function
 
 
+    Public Function spWBViewGetLoadWB() As DataTable
+
+        Dim sSQL As String = "SELECT * FROM WBLoadPrintPage';"
+        Return clsSQLiteDB.GetDataTable(sSQL, cnHTT)
+
+    End Function
+
+
+    Public Function spWBViewGetMTYWB() As DataTable
+
+        Dim sSQL As String = "SELECT * FROM WBMTYPrintPage';"
+        Return clsSQLiteDB.GetDataTable(sSQL, cnHTT)
+
+    End Function
+
+
     Public Function spWBViewGetRawWB(ByVal WaybillID As String) As DataTable
 
-        Dim sSQL As String = "SELECT WaybillID, wbPrimarySR, PriCLIC, SecCLIC, RouteVerso, TrainAssignment, " & _
+        Dim sSQL As String = "SELECT WaybillID, wbPrimarySR, PriCLIC, SecCLIC, RouteVerso, TrainAssignment, " &
             "CASE InTrainSeq WHEN NULL THEN 0 ELSE InTrainSeq END AS InTrainSeq FROM Waybill WHERE WaybillID = '" & WaybillID & "' AND RRID = '" & gsMyRR_ID & "';"
         Return clsSQLiteDB.GetDataTable(sSQL, cnHTT)
 
@@ -144,6 +158,12 @@ Module DataAccess_Waybill
 
     End Function
 
+    'Public Function spWBGetLoadsForPrint() As DataTable
+
+    '    Dim sSQL As String = "SELECT * FROM  " ' AND RRID = '" & gsMyRR_ID & "';"
+    '    Return clsSQLiteDB.ExecuteNonQuery(sSQL, cnHTT)
+
+    'End Function
 
 
 End Module

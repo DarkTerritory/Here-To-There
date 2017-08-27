@@ -27,7 +27,9 @@
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <PublishUrl>C:\Program Files\AmesvilleShops\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -45,7 +47,8 @@
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,6 +58,8 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>Here To There.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -64,6 +69,7 @@
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>Here To There.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -74,6 +80,7 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DefineTrace>true</DefineTrace>
@@ -83,12 +90,41 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CRVsPackageLib, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.TemplateEngine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.Data.AdoDotNetInterop, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.SQLite, Version=1.0.104.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.SQLite, Version=1.0.104.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\System.Data.SQLite.Core.1.0.104.0\lib\net40\System.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Services, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\WINDOWS\assembly\GAC_MSIL\System.Web.Services\2.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll</HintPath>
@@ -97,9 +133,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Import Include="Here_To_There" />
-    <Import Include="Here_To_There.My" />
-    <Import Include="Here_To_There.My.Resources" />
+    <Import Include="CrystalDecisions.CrystalReports.Engine" />
+    <Import Include="CrystalDecisions.ReportSource" />
+    <Import Include="CrystalDecisions.Windows.Forms" />
     <Import Include="Microsoft.VisualBasic" />
     <Import Include="System" />
     <Import Include="System.Collections" />
@@ -113,6 +149,30 @@
     <Compile Include="CboItemValue.vb" />
     <Compile Include="clsErrorLog.vb" />
     <Compile Include="clsSQLiteDB.vb" />
+    <Compile Include="dsWaybills.Designer.vb">
+      <DependentUpon>dsWaybills.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="dsWaybills.vb">
+      <DependentUpon>dsWaybills.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="frmRptInds.Designer.vb">
+      <DependentUpon>frmRptInds.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRptInds.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportView.Designer.vb">
+      <DependentUpon>frmReportView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportView.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GlobalSuppressions.vb" />
+    <Compile Include="IndStateWComms.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DataAccess_Build.vb" />
     <Compile Include="DataAccess_Fill.vb" />
     <Compile Include="DataAccess_Get.vb" />
@@ -136,12 +196,6 @@
       <DependentUpon>frmOptions.vb</DependentUpon>
     </Compile>
     <Compile Include="frmOptions.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmRegionMap.Designer.vb">
-      <DependentUpon>frmRegionMap.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmRegionMap.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmGenerate.Designer.vb">
@@ -270,6 +324,12 @@
     <Compile Include="frmTrainAssign.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmWaybillView.Designer.vb">
+      <DependentUpon>frmWaybillView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmWaybillView.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmWBCatalog.Designer.vb">
       <DependentUpon>frmWBCatalog.vb</DependentUpon>
     </Compile>
@@ -299,10 +359,21 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="WaitCursor.vb" />
+    <Compile Include="Waybill1.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Waybill2.vb">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmRptInds.resx">
+      <DependentUpon>frmRptInds.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBuildThruWBs.resx">
       <DependentUpon>frmBuildThruWBs.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMatchup.resx">
       <DependentUpon>frmMatchup.vb</DependentUpon>
@@ -311,11 +382,9 @@
     <EmbeddedResource Include="frmOptions.resx">
       <DependentUpon>frmOptions.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRegionMap.resx">
-      <DependentUpon>frmRegionMap.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmGenerate.resx">
       <DependentUpon>frmGenerate.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmImport.resx">
       <DependentUpon>frmImport.vb</DependentUpon>
@@ -367,6 +436,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMaintStaging.resx">
       <DependentUpon>frmMaintStaging.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMaintState.resx">
       <DependentUpon>frmMaintState.vb</DependentUpon>
@@ -384,6 +454,9 @@
       <DependentUpon>frmMaintTrWork.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReportView.resx">
+      <DependentUpon>frmReportView.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSelectPartner.resx">
       <DependentUpon>frmSelectPartner.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -395,6 +468,9 @@
     <EmbeddedResource Include="frmTrainAssign.resx">
       <DependentUpon>frmTrainAssign.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWaybillView.resx">
+      <DependentUpon>frmWaybillView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmWBCatalog.resx">
       <DependentUpon>frmWBCatalog.vb</DependentUpon>
@@ -411,9 +487,29 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="AAR_Region.rpt" />
+    <None Include="AA_typewriter.ttf" />
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="CommBalance.rpt" />
+    <None Include="dsWaybills.xsc">
+      <DependentUpon>dsWaybills.xsd</DependentUpon>
+    </None>
+    <None Include="dsWaybills.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsWaybills.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="dsWaybills.xss">
+      <DependentUpon>dsWaybills.xsd</DependentUpon>
+    </None>
+    <None Include="IndByState.rpt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="CrystalReport1.rpt" />
+    <None Include="IndsWithComms.rpt" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -425,6 +521,12 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="packages.config" />
+    <None Include="TrainListByDeparture.rpt" />
+    <None Include="TrainListByID.rpt" />
+    <None Include="TrainReport.rpt" />
+    <EmbeddedResource Include="Waybill1.rpt" />
+    <EmbeddedResource Include="Waybill2.rpt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="BusinessObjects.CrystalReports.10.5">
@@ -476,7 +578,6 @@
     <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Here To There_TemporaryKey.pfx" />
     <None Include="Images\districts.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -487,6 +588,13 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="packages\System.Data.SQLite.Core.1.0.104.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('packages\System.Data.SQLite.Core.1.0.104.0\build\net451\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\System.Data.SQLite.Core.1.0.104.0\build\net451\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\System.Data.SQLite.Core.1.0.104.0\build\net451\System.Data.SQLite.Core.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

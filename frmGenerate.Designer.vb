@@ -23,27 +23,30 @@ Partial Class frmGenerate
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmGenerate))
-        Me.dgvTrainLoadCount = New System.Windows.Forms.DataGridView
-        Me.TrID = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.TrName = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.TrCarLimit = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.WaybillCount = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.LkDesc = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.cmdGo = New System.Windows.Forms.Button
-        Me.lblGo = New System.Windows.Forms.Label
-        Me.lblInstructions = New System.Windows.Forms.Label
-        Me.lblNext = New System.Windows.Forms.Label
-        Me.cmdNext = New System.Windows.Forms.Button
-        Me.lblInstructionTitle = New System.Windows.Forms.Label
-        Me.dgvAgentAssign = New System.Windows.Forms.DataGridView
-        Me.CatalogID = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.colChecked = New System.Windows.Forms.DataGridViewCheckBoxColumn
-        Me.RouteVerso = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CatComm = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PriInd = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PriCity = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PriState = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CatSpots = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.dgvTrainLoadCount = New System.Windows.Forms.DataGridView()
+        Me.TrID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TrName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TrCarLimit = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WaybillCount = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LkDesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmdGo = New System.Windows.Forms.Button()
+        Me.lblGo = New System.Windows.Forms.Label()
+        Me.lblInstructions = New System.Windows.Forms.Label()
+        Me.lblNext = New System.Windows.Forms.Label()
+        Me.cmdNext = New System.Windows.Forms.Button()
+        Me.lblInstructionTitle = New System.Windows.Forms.Label()
+        Me.dgvAgentAssign = New System.Windows.Forms.DataGridView()
+        Me.CatalogID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colChecked = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.RouteVerso = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CatComm = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PriInd = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PriCity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PriState = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CatSpots = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lblPassesThruCounter = New System.Windows.Forms.Label()
+        Me.lblNowSelecting = New System.Windows.Forms.Label()
+        Me.lblSelectingforTrain = New System.Windows.Forms.Label()
         CType(Me.dgvTrainLoadCount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvAgentAssign, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -107,7 +110,7 @@ Partial Class frmGenerate
         Me.lblGo.Name = "lblGo"
         Me.lblGo.Size = New System.Drawing.Size(117, 52)
         Me.lblGo.TabIndex = 2
-        Me.lblGo.Text = "To make an initial pass through the Catalog Click GO"
+        Me.lblGo.Text = "To Start the process Click GO"
         Me.lblGo.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'lblInstructions
@@ -130,6 +133,7 @@ Partial Class frmGenerate
         '
         'cmdNext
         '
+        Me.cmdNext.Enabled = False
         Me.cmdNext.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdNext.Location = New System.Drawing.Point(657, 370)
         Me.cmdNext.Name = "cmdNext"
@@ -211,11 +215,44 @@ Partial Class frmGenerate
         Me.CatSpots.Name = "CatSpots"
         Me.CatSpots.Width = 50
         '
+        'lblPassesThruCounter
+        '
+        Me.lblPassesThruCounter.AutoSize = True
+        Me.lblPassesThruCounter.Location = New System.Drawing.Point(347, 351)
+        Me.lblPassesThruCounter.Name = "lblPassesThruCounter"
+        Me.lblPassesThruCounter.Size = New System.Drawing.Size(113, 13)
+        Me.lblPassesThruCounter.TabIndex = 9
+        Me.lblPassesThruCounter.Text = "Passes thru Catalog: 1"
+        Me.lblPassesThruCounter.Visible = False
+        '
+        'lblNowSelecting
+        '
+        Me.lblNowSelecting.AutoSize = True
+        Me.lblNowSelecting.Location = New System.Drawing.Point(325, 372)
+        Me.lblNowSelecting.Name = "lblNowSelecting"
+        Me.lblNowSelecting.Size = New System.Drawing.Size(161, 13)
+        Me.lblNowSelecting.TabIndex = 10
+        Me.lblNowSelecting.Text = "Now selecting Waybills  for Train"
+        Me.lblNowSelecting.Visible = False
+        '
+        'lblSelectingforTrain
+        '
+        Me.lblSelectingforTrain.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSelectingforTrain.Location = New System.Drawing.Point(306, 388)
+        Me.lblSelectingforTrain.Name = "lblSelectingforTrain"
+        Me.lblSelectingforTrain.Size = New System.Drawing.Size(198, 23)
+        Me.lblSelectingforTrain.TabIndex = 11
+        Me.lblSelectingforTrain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lblSelectingforTrain.Visible = False
+        '
         'frmGenerate
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(812, 444)
+        Me.Controls.Add(Me.lblSelectingforTrain)
+        Me.Controls.Add(Me.lblNowSelecting)
+        Me.Controls.Add(Me.lblPassesThruCounter)
         Me.Controls.Add(Me.dgvAgentAssign)
         Me.Controls.Add(Me.lblInstructionTitle)
         Me.Controls.Add(Me.lblNext)
@@ -254,4 +291,7 @@ Partial Class frmGenerate
     Friend WithEvents PriCity As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PriState As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CatSpots As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents lblPassesThruCounter As Label
+    Friend WithEvents lblNowSelecting As Label
+    Friend WithEvents lblSelectingforTrain As Label
 End Class

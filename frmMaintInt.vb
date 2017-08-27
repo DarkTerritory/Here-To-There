@@ -1,10 +1,4 @@
-﻿Imports System.Windows.Forms
-Imports System
-Imports System.Data
-Imports System.Data.OleDb
-
-
-Public Class frmMaintInt
+﻿Public Class frmMaintInt
 
     Private dtInt As New DataTable
     Private dtPrimaryRR As New DataTable
@@ -275,6 +269,9 @@ Public Class frmMaintInt
 
 
     Private Sub frmMaintDiv_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        'Set the window Title with the Active RR
+        Me.Text = "Maintain - Interchanges - " & gsMyRRName
 
         GetInt()
 

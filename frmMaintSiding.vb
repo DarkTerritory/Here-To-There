@@ -1,10 +1,4 @@
-﻿Imports System.Windows.Forms
-Imports System
-Imports System.Data
-Imports System.Data.OleDb
-
-
-Public Class frmMaintSiding
+﻿Public Class frmMaintSiding
 
     Private dtSiding As New DataTable
     Private dtTown As New DataTable
@@ -284,8 +278,10 @@ Public Class frmMaintSiding
 
     End Function
 
-
     Private Sub frmMaintSiding_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        'Set the window Title with the Active RR
+        Me.Text = "Maintain - Sidings - " & gsMyRRName
 
         GetSidings()
 

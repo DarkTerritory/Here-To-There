@@ -1,9 +1,4 @@
-﻿Imports System.Windows.Forms
-Imports System
-Imports System.Data
-Imports System.Data.OleDb
-
-Public Class frmMaintInd
+﻿Public Class frmMaintInd
 
     Private dtInd As New DataTable
     Private dtRailroad As New DataTable
@@ -506,6 +501,9 @@ Public Class frmMaintInd
 
 
     Private Sub frmMaintInd_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        'Set the window Title with the Active RR
+        Me.Text = "Maintain - Industries - " & gsMyRRName
 
         msMode = "Browse"
 

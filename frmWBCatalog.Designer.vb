@@ -3,7 +3,9 @@ Partial Class frmWBCatalog
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId:="dgrSelRow")>
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId:="dgrCatalog")>
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -23,47 +25,47 @@ Partial Class frmWBCatalog
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmWBCatalog))
-        Me.dgvCatalog = New System.Windows.Forms.DataGridView
-        Me.CatalogID = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CatCommID = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PriCLIC = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PriInd = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CatComm = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CatNotes = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CatCommIdx = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CatPrimarySR = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CatCartype = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PriCity = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PriState = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PriRR = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PriSiding = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PriDiv = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PriServBy = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Notes = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.SecInd = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.SecCity = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.SecState = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.SecRR = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.SecSiding = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.SecDiv = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.SecServBy = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.RouteOnWith = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.RouteIntOnAt = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.RoutIntOffWith = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.RouteIntOffAt = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.RouteIntVia = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.RouteIntDir = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.RouteVerso = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PrintLoadSide1 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PrintMTYForHome = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.cmdCatHelp = New System.Windows.Forms.Button
-        Me.cmdCatDelete = New System.Windows.Forms.Button
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel
-        Me.OK_Button = New System.Windows.Forms.Button
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.lblRecsReturned = New System.Windows.Forms.Label
-        Me.lblWhiteComplete = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
+        Me.dgvCatalog = New System.Windows.Forms.DataGridView()
+        Me.CatalogID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CatCommID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PriCLIC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PriInd = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CatComm = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CatNotes = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CatCommIdx = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CatPrimarySR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CatCartype = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PriCity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PriState = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PriRR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PriSiding = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PriDiv = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PriServBy = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Notes = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SecInd = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SecCity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SecState = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SecRR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SecSiding = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SecDiv = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SecServBy = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RouteOnWith = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RouteIntOnAt = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RoutIntOffWith = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RouteIntOffAt = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RouteIntVia = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RouteIntDir = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RouteVerso = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrintLoadSide1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrintMTYForHome = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmdCatHelp = New System.Windows.Forms.Button()
+        Me.cmdCatDelete = New System.Windows.Forms.Button()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.OK_Button = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblRecsReturned = New System.Windows.Forms.Label()
+        Me.lblWhiteComplete = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         CType(Me.dgvCatalog, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
@@ -73,8 +75,8 @@ Partial Class frmWBCatalog
         Me.dgvCatalog.AllowUserToAddRows = False
         Me.dgvCatalog.AllowUserToDeleteRows = False
         Me.dgvCatalog.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvCatalog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvCatalog.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CatalogID, Me.CatCommID, Me.PriCLIC, Me.PriInd, Me.CatComm, Me.CatNotes, Me.CatCommIdx, Me.CatPrimarySR, Me.CatCartype, Me.PriCity, Me.PriState, Me.PriRR, Me.PriSiding, Me.PriDiv, Me.PriServBy, Me.Notes, Me.SecInd, Me.SecCity, Me.SecState, Me.SecRR, Me.SecSiding, Me.SecDiv, Me.SecServBy, Me.RouteOnWith, Me.RouteIntOnAt, Me.RoutIntOffWith, Me.RouteIntOffAt, Me.RouteIntVia, Me.RouteIntDir, Me.RouteVerso, Me.PrintLoadSide1, Me.PrintMTYForHome})
         Me.dgvCatalog.Location = New System.Drawing.Point(12, 69)
@@ -374,8 +376,8 @@ Partial Class frmWBCatalog
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(481, 13)
         Me.Label1.TabIndex = 28
-        Me.Label1.Text = "Catalog entries cannot be edited.  To create new waybills, use the Local Industry" & _
-            " and Matchup tools."
+        Me.Label1.Text = "Catalog entries cannot be edited.  To create new waybills, use the Local Industry" &
+    " and Matchup tools."
         '
         'lblRecsReturned
         '
@@ -423,7 +425,7 @@ Partial Class frmWBCatalog
         Me.Controls.Add(Me.dgvCatalog)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmWBCatalog"
-        Me.Text = "Here To There - Waybill Catalog"
+        Me.Text = "Create - Waybill Catalog"
         CType(Me.dgvCatalog, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)

@@ -1,5 +1,4 @@
-﻿Imports CrystalDecisions.Shared
-Imports System.Data.SQLite
+﻿
 
 Public Class frmWaybillView
 
@@ -9,11 +8,17 @@ Public Class frmWaybillView
     Private dtWBList As DataTable
     Private dtWBPage As DataTable
     Private dtWBMTYs As DataTable
-    Private wbLoad As stWBLoad
-    Private wbMTY As stWBMTY
     'Private bFormatted As Boolean = False
     Private m_crvPaneShowing As String
     Private mbResponse As MsgBoxResult
+
+    'Report Ducuments
+    Private RptDocLoad As New ReportDocument
+    Private RptDocMTY As New ReportDocument
+
+    'Structures
+    Private wbLoad As stWBLoad
+    Private wbMTY As stWBMTY
 
 
     Private Structure stWBLoad
@@ -122,9 +127,9 @@ Public Class frmWaybillView
 
             End Select
 
-            DataAccess_Waybill.spWBViewUpdateWBSeq(iPrintPage, _
-                      iPrintPageSeq, _
-                      sSerialNum, _
+            DataAccess_Waybill.spWBViewUpdateWBSeq(iPrintPage,
+                      iPrintPageSeq,
+                      sSerialNum,
                       dtWBPrint.Rows(0).Item("WaybillID"))
 
             iPrintPageSeq += 1
@@ -183,7 +188,13 @@ Public Class frmWaybillView
                         .Comm = drWBPage.Item("wbComm").ToString
                         .Cartype = drWBPage.Item("wbCarType").ToString
                         .Routing = drWBPage.Item("RouteIntVia").ToString
-                        .Via = GetTownName(drWBPage.Item("RouteIntOffAt").ToString) & ", " & drWBPage.Item("RouteIntOffWith").ToString & ""
+                        If drWBPage.Item("RouteIntOffAt").ToString = "" Then
+                            .Via = ""
+                        ElseIf drWBPage.Item("RouteIntOffWith").ToString = "" Then
+                            .Via = GetTownName(drWBPage.Item("RouteIntOffAt").ToString)
+                        Else
+                            .Via = GetTownName(drWBPage.Item("RouteIntOffAt").ToString) & ", " & drWBPage.Item("RouteIntOffWith").ToString & ""
+                        End If
                         .Notes = drWBPage.Item("wbNotes").ToString
                         .SerialNum = drWBPage.Item("PrintSerialNum").ToString
 
@@ -215,7 +226,13 @@ Public Class frmWaybillView
                         .Comm = drWBPage.Item("wbComm").ToString
                         .Cartype = drWBPage.Item("wbCarType").ToString
                         .Routing = drWBPage.Item("RouteIntVia").ToString
-                        .Via = GetTownName(drWBPage.Item("RouteIntOnAt").ToString) & ", " & drWBPage.Item("RouteIntOnWith").ToString & ""
+                        If drWBPage.Item("RouteIntOnAt").ToString = "" Then
+                            .Via = ""
+                        ElseIf drWBPage.Item("RouteIntOnWith").ToString = "" Then
+                            .Via = GetTownName(drWBPage.Item("RouteIntOnAt").ToString)
+                        Else
+                            .Via = GetTownName(drWBPage.Item("RouteIntOnAt").ToString) & ", " & drWBPage.Item("RouteIntOnWith").ToString & ""
+                        End If
                         .Notes = drWBPage.Item("wbNotes").ToString
                         .SerialNum = drWBPage.Item("PrintSerialNum").ToString
 
@@ -241,31 +258,31 @@ Public Class frmWaybillView
                 End If
 
                 'Set up the Load and Empty pages
-                DataAccess_Waybill.spWBViewLoadPrintPage(sSeq, _
-                          wbLoad.PriRR, _
-                          wbLoad.PriAAR, _
-                          wbLoad.PriInd, _
-                          wbLoad.PriCity, _
-                          wbLoad.PriState, _
-                          wbLoad.Comm, _
-                          wbLoad.SecInd, _
-                          wbLoad.SecCity, _
-                          wbLoad.SecState, _
-                          wbLoad.Cartype, _
-                          wbLoad.Routing, _
-                          wbLoad.Via, _
-                          wbLoad.Notes, _
-                          wbLoad.LoadSide1, _
-                          wbLoad.SerialNum, _
-                          iPrintPage, _
-                          wbMTY.PriRR, _
-                          wbMTY.MTYForHome, _
-                          wbMTY.IndAgent, _
-                          wbMTY.Location, _
-                          wbMTY.Cartype, _
-                          wbMTY.Routing, _
-                          wbMTY.LoadSide1, _
-                          wbMTY.SerialNum, _
+                DataAccess_Waybill.spWBViewLoadPrintPage(sSeq,
+                          wbLoad.PriRR,
+                          wbLoad.PriAAR,
+                          wbLoad.PriInd,
+                          wbLoad.PriCity,
+                          wbLoad.PriState,
+                          wbLoad.Comm,
+                          wbLoad.SecInd,
+                          wbLoad.SecCity,
+                          wbLoad.SecState,
+                          wbLoad.Cartype,
+                          wbLoad.Routing,
+                          wbLoad.Via,
+                          wbLoad.Notes,
+                          wbLoad.LoadSide1,
+                          wbLoad.SerialNum,
+                          iPrintPage,
+                          wbMTY.PriRR,
+                          wbMTY.MTYForHome,
+                          wbMTY.IndAgent,
+                          wbMTY.Location,
+                          wbMTY.Cartype,
+                          wbMTY.Routing,
+                          wbMTY.LoadSide1,
+                          wbMTY.SerialNum,
                           iPrintPage)
 
 
@@ -280,105 +297,105 @@ Public Class frmWaybillView
         Next
 
         'bFormatted = True
-        SetUpWaybillsToolStripMenuItem.Enabled = False
+        'SetUpWaybillsToolStripMenuItem.Enabled = False
 
 
     End Sub
 
 
-    Private Sub PrintWaybills()
+    '    Private Sub PrintWaybills()
 
-        Dim dtWBList As New DataTable
+    '        Dim dtWBList As New DataTable
 
-        'Get the pages (record IDs) from the tables, loop through each front and back page
-        dtWBList = DataAccess_Waybill.spWBPrintGetLoadWBPage
+    '        'Get the pages (record IDs) from the tables, loop through each front and back page
+    '        dtWBList = DataAccess_Waybill.spWBPrintGetLoadWBPage
 
-        Dim drWBList As DataRow
+    '        Dim drWBList As DataRow
 
-        For Each drWBList In dtWBList.Rows
+    '        For Each drWBList In dtWBList.Rows
 
-RePrintPage:
+    'RePrintPage:
 
-            MsgBox("Insert a new page into your printer to print side 1.")
+    '            MsgBox("Insert a new page into your printer to print side 1.")
 
-            dtWBLoads = DataAccess_Waybill.spWBViewGetLoadWBPage(drWBList.Item("iPrintPage"))
-            dtWBMTYs = DataAccess_Waybill.spWBViewGetMTYWBPage(drWBList.Item("iPrintPage"))
+    '            dtWBLoads = DataAccess_Waybill.spWBViewGetLoadWBPage(drWBList.Item("iPrintPage"))
+    '            dtWBMTYs = DataAccess_Waybill.spWBViewGetMTYWBPage(drWBList.Item("iPrintPage"))
 
-            'Send Load Page to print
-            PrintLoadsPage()
+    '            'Send Load Page to print
+    '            PrintLoadsPage()
 
-            MsgBox("Turn the page over and feed it back into your printer to print side 2.")
+    '            MsgBox("Turn the page over and feed it back into your printer to print side 2.")
 
-            'Send MTY Page to print
-            PrintMTYsPage()
+    '            'Send MTY Page to print
+    '            PrintMTYsPage()
 
-            mbResponse = MsgBox("Did the page print out correctly? Click No to Re-Print the page, or Yes to continue.", MsgBoxStyle.YesNo + MsgBoxStyle.Question)
+    '            mbResponse = MsgBox("Did the page print out correctly? Click No to Re-Print the page, or Yes to continue.", MsgBoxStyle.YesNo + MsgBoxStyle.Question)
 
-            If mbResponse = vbNo Then GoTo RePrintPage
+    '            If mbResponse = vbNo Then GoTo RePrintPage
 
-            'Stop ' Temporary, for debugging
+    '            'Stop ' Temporary, for debugging
 
-        Next
-
-
-    End Sub
+    '        Next
 
 
-    Private Sub PrintLoadsPage()
-
-        Dim LoadsReport As New Waybill1
-        Dim objPS As New System.Drawing.Printing.PrinterSettings
-        Dim margins As PageMargins
-
-        margins = LoadsReport.PrintOptions.PageMargins
-        margins.bottomMargin = 320
-        margins.leftMargin = 360
-        margins.rightMargin = 340
-        margins.topMargin = 380
-        LoadsReport.PrintOptions.ApplyPageMargins(margins)
-        crvMTYs.Visible = False
-        LoadsReport.PrintOptions.PrinterName = objPS.PrinterName
-        LoadsReport.PrintOptions.PaperOrientation = CrystalDecisions.Shared.PaperOrientation.Landscape
-        LoadsReport.PrintOptions.PaperSource = PaperSource.Manual  'TODO: Testing
-        LoadsReport.SetDataSource(dtWBLoads)
-        crvLoads.ReportSource = LoadsReport
-        crvLoads.Dock = DockStyle.Fill
-        crvLoads.Width = 700
-        crvLoads.Height = 450
-        crvLoads.BringToFront()
-        crvLoads.Visible = True
-        LoadsReport.PrintToPrinter(1, False, 0, 0)
-
-    End Sub
+    '    End Sub
 
 
-    Private Sub PrintMTYsPage()
+    'Private Sub PrintLoadsPage()
 
-        Dim MTYsReport As New Waybill2
-        Dim objPS As New System.Drawing.Printing.PrinterSettings
-        Dim margins As PageMargins
+    '    Dim LoadsReport As New Waybill1
+    '    Dim objPS As New Printing.PrinterSettings
+    '    Dim margins As CrystalDecisions.Shared.PageMargins
 
-        margins = MTYsReport.PrintOptions.PageMargins
-        margins.bottomMargin = 320
-        margins.leftMargin = 360
-        margins.rightMargin = 340
-        margins.topMargin = 380
-        MTYsReport.PrintOptions.ApplyPageMargins(margins)
-        crvLoads.Visible = False
-        MTYsReport.PrintOptions.PrinterName = objPS.PrinterName
-        MTYsReport.PrintOptions.PaperOrientation = CrystalDecisions.Shared.PaperOrientation.Landscape
-        MTYsReport.PrintOptions.PaperSource = PaperSource.Manual  'TODO: Testing
-        MTYsReport.SetDataSource(dtWBMTYs)
-        crvMTYs.ReportSource = MTYsReport
-        crvMTYs.Dock = DockStyle.Fill
-        crvMTYs.Width = 700
-        crvMTYs.Height = 450
-        crvMTYs.BringToFront()
-        crvMTYs.Visible = True
+    '    margins = LoadsReport.PrintOptions.PageMargins
+    '    margins.bottomMargin = 320
+    '    margins.leftMargin = 360
+    '    margins.rightMargin = 340
+    '    margins.topMargin = 380
+    '    LoadsReport.PrintOptions.ApplyPageMargins(margins)
+    '    crvMTYs.Visible = False
+    '    LoadsReport.PrintOptions.PrinterName = objPS.PrinterName
+    '    LoadsReport.PrintOptions.PaperOrientation = CrystalDecisions.Shared.PaperOrientation.Landscape
+    '    LoadsReport.PrintOptions.PaperSource = CrystalDecisions.Shared.PaperSource.Manual  'TODO: Testing
+    '    LoadsReport.SetDataSource(dtWBLoads)
+    '    crvLoads.ReportSource = LoadsReport
+    '    crvLoads.Dock = DockStyle.Fill
+    '    crvLoads.Width = 700
+    '    crvLoads.Height = 450
+    '    crvLoads.BringToFront()
+    '    crvLoads.Visible = True
+    '    LoadsReport.PrintToPrinter(1, False, 0, 0)
 
-        MTYsReport.PrintToPrinter(1, False, 0, 0)
+    'End Sub
 
-    End Sub
+
+    'Private Sub PrintMTYsPage()
+
+    '    Dim MTYsReport As New Waybill2
+    '    Dim objPS As New System.Drawing.Printing.PrinterSettings
+    '    Dim margins As CrystalDecisions.Shared.PageMargins
+
+    '    margins = MTYsReport.PrintOptions.PageMargins
+    '    margins.bottomMargin = 320
+    '    margins.leftMargin = 360
+    '    margins.rightMargin = 340
+    '    margins.topMargin = 380
+    '    MTYsReport.PrintOptions.ApplyPageMargins(margins)
+    '    crvLoads.Visible = False
+    '    MTYsReport.PrintOptions.PrinterName = objPS.PrinterName
+    '    MTYsReport.PrintOptions.PaperOrientation = CrystalDecisions.Shared.PaperOrientation.Landscape
+    '    MTYsReport.PrintOptions.PaperSource = CrystalDecisions.Shared.PaperSource.Manual  'TODO: Testing
+    '    MTYsReport.SetDataSource(dtWBMTYs)
+    '    crvMTYs.ReportSource = MTYsReport
+    '    crvMTYs.Dock = DockStyle.Fill
+    '    crvMTYs.Width = 700
+    '    crvMTYs.Height = 450
+    '    crvMTYs.BringToFront()
+    '    crvMTYs.Visible = True
+
+    '    MTYsReport.PrintToPrinter(1, False, 0, 0)
+
+    'End Sub
 
 
     Private Sub ClearWBLoad()
@@ -426,148 +443,175 @@ RePrintPage:
         'Check to see if there are any waybills ready to be printed in the Print tables.
         iRecCount = CType(DataAccess_Misc.spPrintGetWBLoadCount, Integer) + 0
 
-        SetUpWaybillsToolStripMenuItem.Enabled = True
-        mbResponse = MsgBox("If any new waybills have been added they will not be included unless the entire set is formatted. " & _
+        'SetUpWaybillsToolStripMenuItem.Enabled = True
+        mbResponse = MsgBox("If any new waybills have been added since the last print they will not be included unless the entire set is formatted. " &
             vbNewLine & vbNewLine & "Format all waybills for printing at this time?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Format Waybills Prior to Printing?")
-        If mbResponse = MsgBoxResult.No Then Exit Sub
-
-        SetUpWaybillPages()
-        'bFormatted = True
-        SetUpWaybillsToolStripMenuItem.Enabled = False
-
-    End Sub
-
-
-    Private Sub ReviewWBs()
-
-        If m_crvPaneShowing = "Loads" Then
-            crvLoads.Visible = True
-            crvMTYs.Visible = False
-
-        Else
-            crvMTYs.Visible = True
-            crvLoads.Visible = False
+        If mbResponse = MsgBoxResult.Yes Then
+            SetUpWaybillPages()
 
         End If
 
-    End Sub
+        ''bFormatted = True
+        ''SetUpWaybillsToolStripMenuItem.Enabled = False
+        'Dim dsWaybill As New dsWaybills
+
+        'Dim dtWBLoads = New DataTable
+        'Dim dtWBMTYs = New DataTable
+
+        'Dim daWaybillLoad As New dsWaybillsTableAdapters.WBLoadPrintPageTableAdapter
+        'Dim daWaybillMTYs As New dsWaybillsTableAdapters.WBMTYPrintPageTableAdapter
+
+        'dtWBLoads = daWaybillLoad.GetData()
+        'dtWBMTYs = daWaybillMTYs.GetData()
+
+        'RptDocLoad.Load(gsRptPath & "\Waybill1.rpt")
+        'RptDocMTY.Load(gsRptPath & "\Waybill2.rpt")
 
 
-    Private Sub cmdReviewWBs_Click(ByVal sender As Object, ByVal e As System.EventArgs)
-
-        ReviewWBs()
-
-    End Sub
-
-
-    Private Sub DisplayLoads()
-
-        Dim LoadsReport As New Waybill1
-
-        dtWBLoads = DataAccess_Waybill.spWBPrintGetLoadWBPage
-
-        'Show Loads Pages 
-        crvMTYs.Visible = False
-        LoadsReport.PrintOptions.PaperOrientation = PaperOrientation.Landscape
-        LoadsReport.SetDataSource(dtWBLoads)
-        With crvLoads
-            .ReportSource = LoadsReport
-            .Dock = DockStyle.Fill
-            .Zoom(1)
-            .BringToFront()
-            .Visible = True
-            .Show()
-        End With
-
+        'RptDocLoad.SetDataSource(dtWBLoads)
+        'RptDocMTY.SetDataSource(dtWBMTYs)
+        'crvLoad.ReportSource = RptDocLoad
+        'crvMTYs.ReportSource = RptDocMTY
 
     End Sub
 
 
-    Private Sub DisplayMTYs()
+    '    Private Sub ReviewWBs()
 
-        Dim MTYsReport As New Waybill2
+    '        If m_crvPaneShowing = "Loads" Then
+    '            crvLoads.Visible = True
+    '            crvMTYs.Visible = False
 
-        dtWBMTYs = DataAccess_Waybill.spWBPrintGetMTYWBPage
+    '        Else
+    '            crvMTYs.Visible = True
+    '            crvLoads.Visible = False
 
-        'Send MTY Page to print
-        crvLoads.Visible = False
-        MTYsReport.PrintOptions.PaperOrientation = PaperOrientation.Landscape
-        MTYsReport.SetDataSource(dtWBMTYs)
-        crvMTYs.ReportSource = MTYsReport
-        crvMTYs.Dock = DockStyle.Fill
-        crvMTYs.Zoom(1)
-        crvMTYs.BringToFront()
-        crvMTYs.Visible = True
-        crvMTYs.Show()
+    '        End If
 
-    End Sub
+    '    End Sub
 
 
-    Private Sub LoadsToolStripMenuItem_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles LoadsToolStripMenuItem.Click
+    '    Private Sub cmdReviewWBs_Click(ByVal sender As Object, ByVal e As System.EventArgs)
 
-        m_crvPaneShowing = "Loads"
-        DisplayLoads()
+    '        ReviewWBs()
 
-    End Sub
-
-
-    Private Sub EmptysToolStripMenuItem_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles EmptysToolStripMenuItem.Click
-
-        m_crvPaneShowing = "MTYs"
-        DisplayMTYs()
-
-    End Sub
+    '    End Sub
 
 
-    Private Sub SetUpWaybillsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SetUpWaybillsToolStripMenuItem.Click
+    '    Private Sub DisplayLoads()
 
-        SetUpWaybillPages()
+    '        Dim LoadsReport As New Waybill1
 
-    End Sub
+    '        dtWBLoads = DataAccess_Waybill.spWBPrintGetLoadWBPage
 
-    Private Sub PrintAllWaybillSheetsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintAllWaybillSheetsToolStripMenuItem.Click
+    '        'Show Loads Pages 
+    '        crvMTYs.Visible = False
+    '        LoadsReport.PrintOptions.PaperOrientation = CrystalDecisions.Shared.PaperOrientation.Landscape
+    '        LoadsReport.SetDataSource(dtWBLoads)
+    '        With crvLoads
+    '            .ReportSource = LoadsReport
+    '            .Dock = DockStyle.Fill
+    '            .Zoom(1)
+    '            .BringToFront()
+    '            .Visible = True
+    '            .Show()
+    '        End With
 
-        PrintWaybills()
 
-    End Sub
-
-
-    Private Sub PrintSingleWaybillsSheetToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintSingleWaybillsSheetToolStripMenuItem.Click
+    '    End Sub
 
 
-        Dim dtWBList As New DataTable
-        Dim iRecCount As Integer
-        Dim iPrintPageNum As Integer
+    '    Private Sub DisplayMTYs()
 
-        'Get the number of pages that make up the set
-        dtWBList = DataAccess_Waybill.spWBPrintGetLoadWBPage
-        iRecCount = dtWBList.Rows.Count
+    '        Dim MTYsReport As New Waybill2
 
-        iPrintPageNum = InputBox("Enter a page number between 1 and " & iRecCount & "to print.", "Print Single Waybill Page", "1")
+    '        dtWBMTYs = DataAccess_Waybill.spWBPrintGetMTYWBPage
 
-        If iPrintPageNum > iRecCount Then Exit Sub
-        If iPrintPageNum <= 0 Then Exit Sub
+    '        'Send MTY Page to print
+    '        crvLoads.Visible = False
+    '        MTYsReport.PrintOptions.PaperOrientation = CrystalDecisions.Shared.PaperOrientation.Landscape
+    '        MTYsReport.SetDataSource(dtWBMTYs)
+    '        crvMTYs.ReportSource = MTYsReport
+    '        crvMTYs.Dock = DockStyle.Fill
+    '        crvMTYs.Zoom(1)
+    '        crvMTYs.BringToFront()
+    '        crvMTYs.Visible = True
+    '        crvMTYs.Show()
 
-RePrintPage:
+    '    End Sub
 
-        MsgBox("Insert a new page into your printer to print side 1.")
 
-        dtWBLoads = DataAccess_Waybill.spWBViewGetLoadWBPage(iPrintPageNum)
-        dtWBMTYs = DataAccess_Waybill.spWBViewGetMTYWBPage(iPrintPageNum)
+    '    Private Sub LoadsToolStripMenuItem_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles LoadsToolStripMenuItem.Click
 
-        'Send Load Page to print
-        PrintLoadsPage()
+    '        m_crvPaneShowing = "Loads"
+    '        DisplayLoads()
 
-        MsgBox("Turn the page over and feed it back into your printer to print side 2.")
+    '    End Sub
 
-        'Send MTY Page to print
-        PrintMTYsPage()
 
-        mbResponse = MsgBox("Did the page print out correctly? Click No to Re-Print the page, or Yes to continue.", MsgBoxStyle.YesNo + MsgBoxStyle.Question)
+    '    Private Sub EmptysToolStripMenuItem_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles EmptysToolStripMenuItem.Click
 
-        If mbResponse = vbNo Then GoTo RePrintPage
+    '        m_crvPaneShowing = "MTYs"
+    '        DisplayMTYs()
 
-    End Sub
+    '    End Sub
+
+
+    '    Private Sub SetUpWaybillsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SetUpWaybillsToolStripMenuItem.Click
+
+    '        SetUpWaybillPages()
+
+    '    End Sub
+
+    '    Private Sub PrintAllWaybillSheetsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintAllWaybillSheetsToolStripMenuItem.Click
+
+    '        PrintWaybills()
+
+    '    End Sub
+
+
+    '    Private Sub PrintSingleWaybillsSheetToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintSingleWaybillsSheetToolStripMenuItem.Click
+
+
+    '        Dim dtWBList As New DataTable
+    '        Dim iRecCount As Integer
+    '        Dim iPrintPageNum As Integer
+
+    '        'Get the number of pages that make up the set
+    '        dtWBList = DataAccess_Waybill.spWBPrintGetLoadWBPage
+    '        iRecCount = dtWBList.Rows.Count
+
+    '        iPrintPageNum = InputBox("Enter a page number between 1 and " & iRecCount & "to print.", "Print Single Waybill Page", "1")
+
+    '        If iPrintPageNum > iRecCount Then Exit Sub
+    '        If iPrintPageNum <= 0 Then Exit Sub
+
+    'RePrintPage:
+
+    '        MsgBox("Insert a new page into your printer to print side 1.")
+
+    '        dtWBLoads = DataAccess_Waybill.spWBViewGetLoadWBPage(iPrintPageNum)
+    '        dtWBMTYs = DataAccess_Waybill.spWBViewGetMTYWBPage(iPrintPageNum)
+
+    '        'Send Load Page to print
+    '        PrintLoadsPage()
+
+    '        MsgBox("Turn the page over and feed it back into your printer to print side 2.")
+
+    '        'Send MTY Page to print
+    '        PrintMTYsPage()
+
+    '        mbResponse = MsgBox("Did the page print out correctly? Click No to Re-Print the page, or Yes to continue.", MsgBoxStyle.YesNo + MsgBoxStyle.Question)
+
+    '        If mbResponse = vbNo Then GoTo RePrintPage
+
+    '    End Sub
+
+    '    Private Sub cmdPrintWaybills_Click(sender As Object, e As EventArgs) Handles cmdPrintWaybills.Click
+
+    '        PrintWaybills()
+
+    '    End Sub
 
 
 End Class

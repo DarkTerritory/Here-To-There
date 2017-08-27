@@ -1,9 +1,4 @@
-﻿Imports System.Windows.Forms
-Imports System
-Imports System.Data
-Imports System.Data.OleDb
-
-Public Class frmMaintStaging
+﻿Public Class frmMaintStaging
 
     Private dtStg As New DataTable
     Private dgrSelRow As New DataGridViewRow
@@ -224,6 +219,9 @@ Public Class frmMaintStaging
 
 
     Private Sub frmMaintDiv_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        'Set the window Title with the Active RR
+        Me.Text = "Maintain - Staging - " & gsMyRRName
 
         GetStg()
 

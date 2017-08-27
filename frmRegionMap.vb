@@ -1,6 +1,4 @@
-﻿Imports System.Windows.Forms
-
-Public Class frmRegionMap
+﻿Public Class frmRegionMap
 
     Private dtRegion As New DataTable
 

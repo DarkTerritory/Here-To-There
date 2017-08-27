@@ -1,9 +1,4 @@
-﻿Imports System.Windows.Forms
-Imports System
-Imports System.Data
-Imports System.Data.OleDb
-
-Public Class frmMaintRegion
+﻿Public Class frmMaintRegion
 
     Private dtRegion As New DataTable
     Private dgrSelRow As New DataGridViewRow

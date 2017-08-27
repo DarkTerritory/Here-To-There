@@ -22,37 +22,37 @@ Partial Class frmSelectPartner
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSelectPartner))
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel
-        Me.OK_Button = New System.Windows.Forms.Button
-        Me.Cancel_Button = New System.Windows.Forms.Button
-        Me.cmdChangeComm = New System.Windows.Forms.Button
-        Me.dgvPartners = New System.Windows.Forms.DataGridView
-        Me.CLIC = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.IndName = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.IndCity = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.IndState = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.IndRR = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.ShipRecv = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Siding = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Notes = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.chkOnline = New System.Windows.Forms.CheckBox
-        Me.chkOffline = New System.Windows.Forms.CheckBox
-        Me.cboFilterBy = New System.Windows.Forms.ComboBox
-        Me.cboFilterByValue = New System.Windows.Forms.ComboBox
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.cboCommodity = New System.Windows.Forms.ComboBox
-        Me.optShippers = New System.Windows.Forms.RadioButton
-        Me.optReceivers = New System.Windows.Forms.RadioButton
-        Me.optAll = New System.Windows.Forms.RadioButton
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.Button2 = New System.Windows.Forms.Button
-        Me.chkShowAny = New System.Windows.Forms.CheckBox
-        Me.chkLCL = New System.Windows.Forms.CheckBox
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.cmdSearch = New System.Windows.Forms.Button
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.OK_Button = New System.Windows.Forms.Button()
+        Me.Cancel_Button = New System.Windows.Forms.Button()
+        Me.cmdChangeComm = New System.Windows.Forms.Button()
+        Me.dgvPartners = New System.Windows.Forms.DataGridView()
+        Me.CLIC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IndName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IndCity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IndState = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IndRR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ShipRecv = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Siding = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Notes = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.chkOnline = New System.Windows.Forms.CheckBox()
+        Me.chkOffline = New System.Windows.Forms.CheckBox()
+        Me.cboFilterBy = New System.Windows.Forms.ComboBox()
+        Me.cboFilterByValue = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.cboCommodity = New System.Windows.Forms.ComboBox()
+        Me.optShippers = New System.Windows.Forms.RadioButton()
+        Me.optReceivers = New System.Windows.Forms.RadioButton()
+        Me.optAll = New System.Windows.Forms.RadioButton()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.chkShowAny = New System.Windows.Forms.CheckBox()
+        Me.chkLCL = New System.Windows.Forms.CheckBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cmdSearch = New System.Windows.Forms.Button()
         Me.ttpSelPartner = New System.Windows.Forms.ToolTip(Me.components)
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.dgvPartners, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,8 +107,8 @@ Partial Class frmSelectPartner
         Me.dgvPartners.AllowUserToAddRows = False
         Me.dgvPartners.AllowUserToDeleteRows = False
         Me.dgvPartners.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvPartners.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPartners.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CLIC, Me.IndName, Me.IndCity, Me.IndState, Me.IndRR, Me.ShipRecv, Me.Siding, Me.Notes})
         Me.dgvPartners.Location = New System.Drawing.Point(27, 138)
@@ -366,7 +366,7 @@ Partial Class frmSelectPartner
         Me.MinimizeBox = False
         Me.Name = "frmSelectPartner"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Build Catalog - Select Secondary Trading Partners"
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.dgvPartners, System.ComponentModel.ISupportInitialize).EndInit()

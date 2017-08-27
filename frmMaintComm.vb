@@ -1,9 +1,4 @@
-﻿Imports System.Windows.Forms
-Imports System
-Imports System.Data
-Imports System.Data.OleDb
-
-Public Class frmMaintComm
+﻿Public Class frmMaintComm
 
     'Button BackColor Standard is Control
     'Button Highlight for mode is ButtonHighlight 

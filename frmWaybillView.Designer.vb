@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmWaybillView
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,133 +20,78 @@ Partial Class frmWaybillView
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmWaybillView))
-        Me.Waybill1_1 = New Here_To_There.Waybill1
-        Me.Waybill2_1 = New Here_To_There.Waybill2
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
-        Me.SetupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.SetUpWaybillsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.LoadsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.EmptysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
-        Me.PrintToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.PrintAllWaybillSheetsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.PrintSingleWaybillsSheetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.crvLoads = New CrystalDecisions.Windows.Forms.CrystalReportViewer
-        Me.crvMTYs = New CrystalDecisions.Windows.Forms.CrystalReportViewer
-        Me.MenuStrip1.SuspendLayout()
+        Me.crwMTY = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
+        Me.Waybill21 = New Here_To_There.Waybill2()
+        Me.Waybill22 = New Here_To_There.Waybill2()
+        Me.crvLoad = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
+        Me.Waybill12 = New Here_To_There.Waybill1()
+        Me.Waybill11 = New Here_To_There.Waybill1()
         Me.SuspendLayout()
         '
-        'MenuStrip1
+        'crwMTY
         '
-        Me.MenuStrip1.AllowMerge = False
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetupToolStripMenuItem, Me.ViewToolStripMenuItem, Me.PrintToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.MenuStrip1.Size = New System.Drawing.Size(1032, 24)
-        Me.MenuStrip1.TabIndex = 6
-        Me.MenuStrip1.Text = "MenuStrip1"
+        Me.crwMTY.ActiveViewIndex = 0
+        Me.crwMTY.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.crwMTY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.crwMTY.Cursor = System.Windows.Forms.Cursors.Default
+        Me.crwMTY.EnableDrillDown = False
+        Me.crwMTY.Location = New System.Drawing.Point(0, 400)
+        Me.crwMTY.Name = "crwMTY"
+        Me.crwMTY.ReportSource = "C:\Users\Craig\Documents\Visual Studio 2015\Projects\Here To There\Waybill2.rpt"
+        Me.crwMTY.ShowCopyButton = False
+        Me.crwMTY.ShowGroupTreeButton = False
+        Me.crwMTY.ShowLogo = False
+        Me.crwMTY.ShowParameterPanelButton = False
+        Me.crwMTY.ShowRefreshButton = False
+        Me.crwMTY.Size = New System.Drawing.Size(1200, 400)
+        Me.crwMTY.TabIndex = 1
+        Me.crwMTY.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
         '
-        'SetupToolStripMenuItem
+        'Waybill22
         '
-        Me.SetupToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetUpWaybillsToolStripMenuItem})
-        Me.SetupToolStripMenuItem.Name = "SetupToolStripMenuItem"
-        Me.SetupToolStripMenuItem.Size = New System.Drawing.Size(49, 20)
-        Me.SetupToolStripMenuItem.Text = "Setup"
+        Me.Waybill22.FileName = "rassdk://C:\Users\Craig\AppData\Local\Temp\temp_843e561b-23be-4854-870d-d6bd55740" &
+    "343.rpt"
         '
-        'SetUpWaybillsToolStripMenuItem
+        'crvLoad
         '
-        Me.SetUpWaybillsToolStripMenuItem.Name = "SetUpWaybillsToolStripMenuItem"
-        Me.SetUpWaybillsToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
-        Me.SetUpWaybillsToolStripMenuItem.Text = "Set Up Waybills"
+        Me.crvLoad.ActiveViewIndex = 0
+        Me.crvLoad.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.crvLoad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.crvLoad.Cursor = System.Windows.Forms.Cursors.Default
+        Me.crvLoad.EnableDrillDown = False
+        Me.crvLoad.Location = New System.Drawing.Point(0, 0)
+        Me.crvLoad.Name = "crvLoad"
+        Me.crvLoad.ReportSource = "C:\Users\Craig\Documents\Visual Studio 2015\Projects\Here To There\Waybill1.rpt"
+        Me.crvLoad.ReuseParameterValuesOnRefresh = True
+        Me.crvLoad.ShowCopyButton = False
+        Me.crvLoad.ShowGroupTreeButton = False
+        Me.crvLoad.ShowLogo = False
+        Me.crvLoad.ShowParameterPanelButton = False
+        Me.crvLoad.ShowRefreshButton = False
+        Me.crvLoad.Size = New System.Drawing.Size(1200, 400)
+        Me.crvLoad.TabIndex = 0
+        Me.crvLoad.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
         '
-        'ViewToolStripMenuItem
+        'Waybill11
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadsToolStripMenuItem, Me.EmptysToolStripMenuItem, Me.ToolStripSeparator1})
-        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
-        Me.ViewToolStripMenuItem.Text = "View"
-        '
-        'LoadsToolStripMenuItem
-        '
-        Me.LoadsToolStripMenuItem.Name = "LoadsToolStripMenuItem"
-        Me.LoadsToolStripMenuItem.Size = New System.Drawing.Size(113, 22)
-        Me.LoadsToolStripMenuItem.Text = "Loads"
-        '
-        'EmptysToolStripMenuItem
-        '
-        Me.EmptysToolStripMenuItem.Name = "EmptysToolStripMenuItem"
-        Me.EmptysToolStripMenuItem.Size = New System.Drawing.Size(113, 22)
-        Me.EmptysToolStripMenuItem.Text = "Emptys"
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(110, 6)
-        '
-        'PrintToolStripMenuItem
-        '
-        Me.PrintToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintAllWaybillSheetsToolStripMenuItem, Me.PrintSingleWaybillsSheetToolStripMenuItem})
-        Me.PrintToolStripMenuItem.Name = "PrintToolStripMenuItem"
-        Me.PrintToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
-        Me.PrintToolStripMenuItem.Text = "Print"
-        '
-        'PrintAllWaybillSheetsToolStripMenuItem
-        '
-        Me.PrintAllWaybillSheetsToolStripMenuItem.Name = "PrintAllWaybillSheetsToolStripMenuItem"
-        Me.PrintAllWaybillSheetsToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
-        Me.PrintAllWaybillSheetsToolStripMenuItem.Text = "Print All Waybill Sheets"
-        '
-        'PrintSingleWaybillsSheetToolStripMenuItem
-        '
-        Me.PrintSingleWaybillsSheetToolStripMenuItem.Name = "PrintSingleWaybillsSheetToolStripMenuItem"
-        Me.PrintSingleWaybillsSheetToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
-        Me.PrintSingleWaybillsSheetToolStripMenuItem.Text = "Print Single Waybills Sheet"
-        '
-        'crvLoads
-        '
-        Me.crvLoads.ActiveViewIndex = 0
-        Me.crvLoads.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.crvLoads.Cursor = System.Windows.Forms.Cursors.Default
-        Me.crvLoads.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.crvLoads.Location = New System.Drawing.Point(0, 24)
-        Me.crvLoads.Name = "crvLoads"
-        Me.crvLoads.ReportSource = Me.Waybill1_1
-        Me.crvLoads.Size = New System.Drawing.Size(1032, 593)
-        Me.crvLoads.TabIndex = 7
-        '
-        'crvMTYs
-        '
-        Me.crvMTYs.ActiveViewIndex = 0
-        Me.crvMTYs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.crvMTYs.Cursor = System.Windows.Forms.Cursors.Default
-        Me.crvMTYs.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.crvMTYs.Location = New System.Drawing.Point(0, 24)
-        Me.crvMTYs.Name = "crvMTYs"
-        Me.crvMTYs.ReportSource = Me.Waybill2_1
-        Me.crvMTYs.Size = New System.Drawing.Size(1032, 593)
-        Me.crvMTYs.TabIndex = 8
+        Me.Waybill11.FileName = "rassdk://C:\Users\Craig\AppData\Local\Temp\temp_3c36a812-0376-4ac7-b790-c805ed1d9" &
+    "d12.rpt"
         '
         'frmWaybillView
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1032, 617)
-        Me.Controls.Add(Me.crvMTYs)
-        Me.Controls.Add(Me.crvLoads)
-        Me.Controls.Add(Me.MenuStrip1)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.ClientSize = New System.Drawing.Size(1204, 803)
+        Me.Controls.Add(Me.crwMTY)
+        Me.Controls.Add(Me.crvLoad)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "frmWaybillView"
-        Me.Text = "Generate, Review and Print Waybills"
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents Waybill1_1 As Here_To_There.Waybill1
@@ -163,4 +108,10 @@ Partial Class frmWaybillView
     Friend WithEvents PrintSingleWaybillsSheetToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents crvLoads As CrystalDecisions.Windows.Forms.CrystalReportViewer
     Friend WithEvents crvMTYs As CrystalDecisions.Windows.Forms.CrystalReportViewer
+    Friend WithEvents crvLoad As CrystalDecisions.Windows.Forms.CrystalReportViewer
+    Friend WithEvents crwMTY As CrystalDecisions.Windows.Forms.CrystalReportViewer
+    Friend WithEvents Waybill22 As Waybill2
+    Friend WithEvents Waybill11 As Waybill1
+    Friend WithEvents Waybill21 As Waybill2
+    Friend WithEvents Waybill12 As Waybill1
 End Class

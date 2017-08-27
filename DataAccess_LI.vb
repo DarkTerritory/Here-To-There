@@ -1,10 +1,8 @@
-﻿Imports System.Data.SQLite
-
-Module DataAccess_LI
+﻿Module DataAccess_LI
 
     Public Function spLICarType(ByVal CommName As String) As DataTable
 
-        Dim sSQL As String = "SELECT commAARType1, commAARType2, commAARType3 FROM Commodity WHERE UPPER(CommodityName) = UPPER('" & CommName & "') AND RRID = '" & gsMyRR_ID & "';"
+        Dim sSQL As String = "SELECT commAARType1, commAARType2, commAARType3 FROM Commodity WHERE UPPER(CommodityName) = UPPER('" & CommName & "');"
         Return clsSQLiteDB.GetDataTable(sSQL, cnHTT)
 
     End Function

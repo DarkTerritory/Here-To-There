@@ -1,9 +1,4 @@
-﻿Imports System.Windows.Forms
-Imports System
-Imports System.Data
-Imports System.Data.OleDb
-
-Public Class frmMaintTrWork
+﻿Public Class frmMaintTrWork
 
     Private dtWork As New DataTable
     Private dtTrain As New DataTable
@@ -290,6 +285,9 @@ Public Class frmMaintTrWork
 
 
     Private Sub frmMaintTrWork_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        'Set the window Title with the Active RR
+        Me.Text = "Maintain - Train Work - " & gsMyRRName
 
         Dim dtName As DataTable
 

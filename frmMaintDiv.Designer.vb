@@ -3,7 +3,8 @@ Partial Class frmMaintDiv
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId:="dgrSelRow")>
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -22,29 +23,29 @@ Partial Class frmMaintDiv
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMaintDiv))
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel
-        Me.OK_Button = New System.Windows.Forms.Button
-        Me.lblDivEndPointEast = New System.Windows.Forms.Label
-        Me.txtDivName = New System.Windows.Forms.TextBox
-        Me.lblDivName = New System.Windows.Forms.Label
-        Me.txtDivNum = New System.Windows.Forms.TextBox
-        Me.lblDivNum = New System.Windows.Forms.Label
-        Me.dgvDiv = New System.Windows.Forms.DataGridView
-        Me.DivNum = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.DivName = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.DivEndPointEast = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.DivEndPointWest = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.cmdDivReset = New System.Windows.Forms.Button
-        Me.cmdDivHelp = New System.Windows.Forms.Button
-        Me.cmdDivSave = New System.Windows.Forms.Button
-        Me.cmdDivDelete = New System.Windows.Forms.Button
-        Me.cmdDivEdit = New System.Windows.Forms.Button
-        Me.cmdDivNew = New System.Windows.Forms.Button
-        Me.cboEndPointEast = New System.Windows.Forms.ComboBox
-        Me.cboEndPointWest = New System.Windows.Forms.ComboBox
-        Me.lblDivEndPointWest = New System.Windows.Forms.Label
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.OK_Button = New System.Windows.Forms.Button()
+        Me.lblDivEndPointEast = New System.Windows.Forms.Label()
+        Me.txtDivName = New System.Windows.Forms.TextBox()
+        Me.lblDivName = New System.Windows.Forms.Label()
+        Me.txtDivNum = New System.Windows.Forms.TextBox()
+        Me.lblDivNum = New System.Windows.Forms.Label()
+        Me.dgvDiv = New System.Windows.Forms.DataGridView()
+        Me.DivNum = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DivName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DivEndPointEast = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DivEndPointWest = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmdDivReset = New System.Windows.Forms.Button()
+        Me.cmdDivHelp = New System.Windows.Forms.Button()
+        Me.cmdDivSave = New System.Windows.Forms.Button()
+        Me.cmdDivDelete = New System.Windows.Forms.Button()
+        Me.cmdDivEdit = New System.Windows.Forms.Button()
+        Me.cmdDivNew = New System.Windows.Forms.Button()
+        Me.cboEndPointEast = New System.Windows.Forms.ComboBox()
+        Me.cboEndPointWest = New System.Windows.Forms.ComboBox()
+        Me.lblDivEndPointWest = New System.Windows.Forms.Label()
         Me.ttpMaintDiv = New System.Windows.Forms.ToolTip(Me.components)
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.dgvDiv, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -265,7 +266,7 @@ Partial Class frmMaintDiv
         Me.Name = "frmMaintDiv"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "frmMaintDiv"
+        Me.Text = "Maintain - Divisions"
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.dgvDiv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

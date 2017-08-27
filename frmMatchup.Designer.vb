@@ -1,9 +1,10 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMatchup
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId:="dgrSelectedRow")>
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,94 +21,94 @@ Partial Class frmMatchup
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMatchup))
-        Me.gbPrimary = New System.Windows.Forms.GroupBox
-        Me.lablLCL = New System.Windows.Forms.Label
-        Me.chkLCL = New System.Windows.Forms.CheckBox
-        Me.lblPriServedByCd = New System.Windows.Forms.Label
-        Me.lblPriTownCd = New System.Windows.Forms.Label
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.lblPriServedBy = New System.Windows.Forms.Label
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.lblPriDivision = New System.Windows.Forms.Label
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.lblPriSiding = New System.Windows.Forms.Label
-        Me.Label12 = New System.Windows.Forms.Label
-        Me.Label11 = New System.Windows.Forms.Label
-        Me.Label10 = New System.Windows.Forms.Label
-        Me.Label9 = New System.Windows.Forms.Label
-        Me.lblPriRR = New System.Windows.Forms.Label
-        Me.lblPriState = New System.Windows.Forms.Label
-        Me.lblPriTown = New System.Windows.Forms.Label
-        Me.lblPriInd = New System.Windows.Forms.Label
-        Me.gbSecondary = New System.Windows.Forms.GroupBox
-        Me.lblSecServedByCd = New System.Windows.Forms.Label
-        Me.lblSecTownCd = New System.Windows.Forms.Label
-        Me.cmdSelectSecondary = New System.Windows.Forms.Button
-        Me.Label7 = New System.Windows.Forms.Label
-        Me.lblSecServedBy = New System.Windows.Forms.Label
-        Me.Label17 = New System.Windows.Forms.Label
-        Me.lblSecDivision = New System.Windows.Forms.Label
-        Me.Label21 = New System.Windows.Forms.Label
-        Me.lblSecSiding = New System.Windows.Forms.Label
-        Me.Label16 = New System.Windows.Forms.Label
-        Me.Label15 = New System.Windows.Forms.Label
-        Me.Label14 = New System.Windows.Forms.Label
-        Me.Label13 = New System.Windows.Forms.Label
-        Me.lblSecRR = New System.Windows.Forms.Label
-        Me.lblSecState = New System.Windows.Forms.Label
-        Me.lblSecTown = New System.Windows.Forms.Label
-        Me.lblSecInd = New System.Windows.Forms.Label
-        Me.lblCommodity = New System.Windows.Forms.Label
-        Me.Label18 = New System.Windows.Forms.Label
-        Me.lblCarType = New System.Windows.Forms.Label
-        Me.Label20 = New System.Windows.Forms.Label
-        Me.Label23 = New System.Windows.Forms.Label
-        Me.lblWaybillStatus = New System.Windows.Forms.Label
-        Me.dgvSelInd = New System.Windows.Forms.DataGridView
-        Me.CatalogID = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.IndName = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CatCommodity = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.ShipRecv = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.indCity = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.IndState = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CLIC = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CatCommID = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CatCommIdx = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Siding = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CatCommSeq = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CarType = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Spots = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.IndRR = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Frequency = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Notes = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PriDiv = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PriServBy = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Label26 = New System.Windows.Forms.Label
-        Me.lblBillCount = New System.Windows.Forms.Label
-        Me.gbRouting = New System.Windows.Forms.GroupBox
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.txtWbNotes = New System.Windows.Forms.TextBox
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.optVerso3 = New System.Windows.Forms.RadioButton
-        Me.optverso2 = New System.Windows.Forms.RadioButton
-        Me.optVerso1 = New System.Windows.Forms.RadioButton
-        Me.cmdEditVia = New System.Windows.Forms.Button
-        Me.lblInterchangeAt = New System.Windows.Forms.Label
-        Me.cboStaging = New System.Windows.Forms.ComboBox
-        Me.cboInterchangeWith = New System.Windows.Forms.ComboBox
-        Me.Label34 = New System.Windows.Forms.Label
-        Me.Label35 = New System.Windows.Forms.Label
-        Me.Label36 = New System.Windows.Forms.Label
-        Me.Label37 = New System.Windows.Forms.Label
-        Me.cmdSaveWaybill = New System.Windows.Forms.Button
-        Me.cmdClearFields = New System.Windows.Forms.Button
+        Me.gbPrimary = New System.Windows.Forms.GroupBox()
+        Me.lablLCL = New System.Windows.Forms.Label()
+        Me.chkLCL = New System.Windows.Forms.CheckBox()
+        Me.lblPriServedByCd = New System.Windows.Forms.Label()
+        Me.lblPriTownCd = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.lblPriServedBy = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.lblPriDivision = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblPriSiding = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.lblPriRR = New System.Windows.Forms.Label()
+        Me.lblPriState = New System.Windows.Forms.Label()
+        Me.lblPriTown = New System.Windows.Forms.Label()
+        Me.lblPriInd = New System.Windows.Forms.Label()
+        Me.gbSecondary = New System.Windows.Forms.GroupBox()
+        Me.lblSecServedByCd = New System.Windows.Forms.Label()
+        Me.lblSecTownCd = New System.Windows.Forms.Label()
+        Me.cmdSelectSecondary = New System.Windows.Forms.Button()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.lblSecServedBy = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.lblSecDivision = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.lblSecSiding = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.lblSecRR = New System.Windows.Forms.Label()
+        Me.lblSecState = New System.Windows.Forms.Label()
+        Me.lblSecTown = New System.Windows.Forms.Label()
+        Me.lblSecInd = New System.Windows.Forms.Label()
+        Me.lblCommodity = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.lblCarType = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.lblWaybillStatus = New System.Windows.Forms.Label()
+        Me.dgvSelInd = New System.Windows.Forms.DataGridView()
+        Me.CatalogID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IndName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CatCommodity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ShipRecv = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.indCity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IndState = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CLIC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CatCommID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CatCommIdx = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Siding = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CatCommSeq = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CarType = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Spots = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IndRR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Frequency = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Notes = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PriDiv = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PriServBy = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.lblBillCount = New System.Windows.Forms.Label()
+        Me.gbRouting = New System.Windows.Forms.GroupBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtWbNotes = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.optVerso3 = New System.Windows.Forms.RadioButton()
+        Me.optverso2 = New System.Windows.Forms.RadioButton()
+        Me.optVerso1 = New System.Windows.Forms.RadioButton()
+        Me.cmdEditVia = New System.Windows.Forms.Button()
+        Me.lblInterchangeAt = New System.Windows.Forms.Label()
+        Me.cboStaging = New System.Windows.Forms.ComboBox()
+        Me.cboInterchangeWith = New System.Windows.Forms.ComboBox()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.cmdSaveWaybill = New System.Windows.Forms.Button()
+        Me.cmdClearFields = New System.Windows.Forms.Button()
         Me.ttpMatchup = New System.Windows.Forms.ToolTip(Me.components)
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel
-        Me.OK_Button = New System.Windows.Forms.Button
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.OK_Button = New System.Windows.Forms.Button()
         Me.gbPrimary.SuspendLayout()
         Me.gbSecondary.SuspendLayout()
         CType(Me.dgvSelInd, System.ComponentModel.ISupportInitialize).BeginInit()

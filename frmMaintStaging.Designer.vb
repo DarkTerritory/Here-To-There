@@ -3,7 +3,8 @@ Partial Class frmMaintStaging
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId:="dgrSelRow")>
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -22,25 +23,25 @@ Partial Class frmMaintStaging
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMaintStaging))
-        Me.lblStgName = New System.Windows.Forms.Label
-        Me.txtStgAreaCode = New System.Windows.Forms.TextBox
-        Me.lblStgCode = New System.Windows.Forms.Label
-        Me.dgvStg = New System.Windows.Forms.DataGridView
-        Me.cmdStgReset = New System.Windows.Forms.Button
-        Me.cmdStgHelp = New System.Windows.Forms.Button
-        Me.cmdStgSave = New System.Windows.Forms.Button
-        Me.cmdStgDelete = New System.Windows.Forms.Button
-        Me.cmdStgEdit = New System.Windows.Forms.Button
-        Me.cmdStgNew = New System.Windows.Forms.Button
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel
-        Me.OK_Button = New System.Windows.Forms.Button
-        Me.txtStagingDesc = New System.Windows.Forms.TextBox
+        Me.lblStgName = New System.Windows.Forms.Label()
+        Me.txtStgAreaCode = New System.Windows.Forms.TextBox()
+        Me.lblStgCode = New System.Windows.Forms.Label()
+        Me.dgvStg = New System.Windows.Forms.DataGridView()
+        Me.StgID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StagingCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StagingDesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmdStgReset = New System.Windows.Forms.Button()
+        Me.cmdStgHelp = New System.Windows.Forms.Button()
+        Me.cmdStgSave = New System.Windows.Forms.Button()
+        Me.cmdStgDelete = New System.Windows.Forms.Button()
+        Me.cmdStgEdit = New System.Windows.Forms.Button()
+        Me.cmdStgNew = New System.Windows.Forms.Button()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.OK_Button = New System.Windows.Forms.Button()
+        Me.txtStagingDesc = New System.Windows.Forms.TextBox()
         Me.ttpMaintStg = New System.Windows.Forms.ToolTip(Me.components)
-        Me.StgID = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.StagingCode = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.StagingDesc = New System.Windows.Forms.DataGridViewTextBoxColumn
         CType(Me.dgvStg, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
@@ -86,6 +87,27 @@ Partial Class frmMaintStaging
         Me.dgvStg.RowHeadersVisible = False
         Me.dgvStg.Size = New System.Drawing.Size(438, 137)
         Me.dgvStg.TabIndex = 158
+        '
+        'StgID
+        '
+        Me.StgID.DataPropertyName = "StgID"
+        Me.StgID.HeaderText = "Staging ID"
+        Me.StgID.Name = "StgID"
+        Me.StgID.Visible = False
+        '
+        'StagingCode
+        '
+        Me.StagingCode.DataPropertyName = "StagingCode"
+        Me.StagingCode.HeaderText = "Staging Area Code"
+        Me.StagingCode.Name = "StagingCode"
+        Me.StagingCode.Width = 150
+        '
+        'StagingDesc
+        '
+        Me.StagingDesc.DataPropertyName = "StagingDesc"
+        Me.StagingDesc.HeaderText = "Description"
+        Me.StagingDesc.Name = "StagingDesc"
+        Me.StagingDesc.Width = 250
         '
         'cmdStgReset
         '
@@ -169,27 +191,6 @@ Partial Class frmMaintStaging
         Me.txtStagingDesc.Size = New System.Drawing.Size(240, 21)
         Me.txtStagingDesc.TabIndex = 164
         '
-        'StgID
-        '
-        Me.StgID.DataPropertyName = "StgID"
-        Me.StgID.HeaderText = "Staging ID"
-        Me.StgID.Name = "StgID"
-        Me.StgID.Visible = False
-        '
-        'StagingCode
-        '
-        Me.StagingCode.DataPropertyName = "StagingCode"
-        Me.StagingCode.HeaderText = "Staging Area Code"
-        Me.StagingCode.Name = "StagingCode"
-        Me.StagingCode.Width = 150
-        '
-        'StagingDesc
-        '
-        Me.StagingDesc.DataPropertyName = "StagingDesc"
-        Me.StagingDesc.HeaderText = "Description"
-        Me.StagingDesc.Name = "StagingDesc"
-        Me.StagingDesc.Width = 250
-        '
         'frmMaintStaging
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -209,7 +210,7 @@ Partial Class frmMaintStaging
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmMaintStaging"
-        Me.Text = "frmMaintStaging"
+        Me.Text = "Maintain - Staging"
         CType(Me.dgvStg, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)

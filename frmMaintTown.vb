@@ -1,9 +1,4 @@
-﻿Imports System.Windows.Forms
-Imports System
-Imports System.Data
-Imports System.Data.OleDb
-
-Public Class frmMaintTown
+﻿Public Class frmMaintTown
 
     Private dtTown As New DataTable
     Private dtServedBy As New DataTable
@@ -334,7 +329,30 @@ Public Class frmMaintTown
     End Function
 
 
+    Private Sub dgvTown_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles dgvTown.CellFormatting
+
+        Dim drv As DataRowView
+        If e.RowIndex >= 0 Then
+            If e.RowIndex <= dtTown.Rows.Count - 1 Then
+                drv = dtTown.DefaultView.Item(e.RowIndex)
+                Dim c As Color
+                If (drv.Item("TownLocal") = "Yes" Or drv.Item("TownLocal") = "Upline") And drv.Item("Sidings").ToString = "0" Then
+                    c = Color.Yellow
+                Else
+                    c = Color.White
+
+                End If
+                e.CellStyle.BackColor = c
+            End If
+        End If
+
+    End Sub
+
+
     Private Sub frmMaintTown_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        'Set the window Title with the Active RR
+        Me.Text = "Maintain - Town - " & gsMyRRName
 
         GetTown()
 
@@ -411,7 +429,7 @@ Public Class frmMaintTown
         ttpMaintTown.SetToolTip(lblTownCallSign, "The two- or three-letter Call Sign of the town.")
         ttpMaintTown.SetToolTip(lblTownFreightHub, "Whether this Town is a Freight Hub, Yes or No. A Freight Hub is usually a town with a Yard that trains originare from to serve other towns.")
         ttpMaintTown.SetToolTip(lblTownServedBy, "The Town where freight trains originate from to serve this Town. If the Town is a Freight Hub, it should be the same name.")
-        ttpMaintTown.SetToolTip(lblTownDivision, "The Name of the Division the Town is a part of. A Town can only belong to one Division.")
+        ttpMaintTown.SetToolTip(lblTownDivision, "The Name of the Division the Town is a part of, or served from. A Town can only belong to one Division.")
         ttpMaintTown.SetToolTip(lblEastOf, "The Name this town is to the East (or North) of. Other valid responses are Staging, or Terminal.")
         ttpMaintTown.SetToolTip(lblWestOf, "The Name this town is to the West (or South) of. Other valid responses are Staging, or Terminal.")
         ttpMaintTown.SetToolTip(lblTownLocal, "Whether the Town actually appears on the layout (Yes), is not modeled but has modeled trains that serve it (Upline), or is not modeled at all (No).")

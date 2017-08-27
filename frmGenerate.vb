@@ -1,5 +1,22 @@
 ﻿Public Class frmGenerate
 
+    Private WithEvents TrainSelectionPass As System.ComponentModel.BackgroundWorker
+
+    Private Class ScrUpdate
+
+        Public PassNum As Integer
+        Public TrSelect As String
+
+        Public Sub New(ByVal PassNumber As Integer, ByVal TrainSelect As String)
+
+            PassNum = PassNumber
+            TrSelect = TrainSelect
+
+        End Sub
+
+    End Class
+
+
     Private dtTrainLoads As DataTable
     Private dtCatForTrain As DataTable
     Private dtCatRec As DataTable
@@ -8,6 +25,8 @@
     Private miSelectPassCount As Integer
     Private miPassCount(0) As Integer
     Private msPageMode As PageMode
+    Private mbTooManyPasses As Boolean = False
+
 
     Private Enum PageMode
         AddLocal = 1
@@ -18,7 +37,23 @@
     End Enum
 
 
-    Private Sub TrainSelectionPass()
+    Private Sub StartSelection()
+
+        TrainSelectionPass = New System.ComponentModel.BackgroundWorker
+        TrainSelectionPass.WorkerReportsProgress = True
+        TrainSelectionPass.WorkerSupportsCancellation = False
+
+        lblSelectingforTrain.Visible = True
+        lblPassesThruCounter.Visible = True
+        lblNowSelecting.Visible = True
+
+        TrainSelectionPass.RunWorkerAsync()
+
+    End Sub
+
+
+
+    Private Sub TrainSelectionPass_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles TrainSelectionPass.DoWork
 
         Dim sTrainID As String
         Dim sTrainPriority As String
@@ -34,6 +69,7 @@
         Dim iFreq As Integer
         Dim iCarsAssigned As Integer
         Dim iMultiCarCount As Integer
+        Dim iPassCount As Integer
 
         ''Prompt to check Catalog for pre-assigned waybills and assign now 
         'If iSelectPassCount = 0 Then
@@ -43,25 +79,33 @@
         '    End If
         'End If
 
-        Using WC As New WaitCursor
+        'Using WC As New WaitCursor
 
-            Do
+        Do
 
-                'Get the last three elements of iPassCount, if their combined total is less than 3 then display warning 
-                If UBound(miPassCount) >= 3 Then
-                    If miPassCount(UBound(miPassCount)) + miPassCount(UBound(miPassCount) - 1) + miPassCount(UBound(miPassCount) - 2) < 2 Then
-                        Exit Do
-
-                    End If
+            'Get the last three elements of iPassCount, if their combined total is less than 3 then display warning 
+            iPassCount = UBound(miPassCount)
+            If iPassCount >= 3 Then
+                If miPassCount(iPassCount) + miPassCount(iPassCount - 1) + miPassCount(iPassCount - 2) < 2 Then
+                    Exit Do
 
                 End If
 
-                'Add a new element
-                ReDim Preserve miPassCount(UBound(miPassCount) + 1)
+            End If
+
+            'If the process needs more than 4 passes, set flag to alert the user there are not enough waybills in the catalog.
+            If iPassCount > 4 Then
+                mbTooManyPasses = True
+
+            End If
+
+            'Add a new element
+            ReDim Preserve miPassCount(UBound(miPassCount) + 1)
 
                 'Fill the Off-Line Trains Dataset
                 Dim dtOLTrains As DataTable
                 Dim drTrain As DataRow
+
                 dtOLTrains = DataAccess_Build.spBuildOLTrains
 
                 'Start Train Loop
@@ -84,8 +128,12 @@
                     sTrainID = drTrain.Item("TrID").ToString
                     sTrainOrigin = drTrain.Item("TrFromStagingArea").ToString
 
-                    'See how many cars have already been assigned to this train
-                    iCarsAssigned = CType(DataAccess_Build.spBuildGetTrCarCount(sTrainID), Integer)
+                'Pass the update values back outside the Background Worker
+                Dim ScreenUpdate = New ScrUpdate(iPassCount + 1, drTrain.Item("trName").ToString)
+                TrainSelectionPass.ReportProgress(iPassCount, ScreenUpdate)
+
+                'See how many cars have already been assigned to this train
+                iCarsAssigned = CType(DataAccess_Build.spBuildGetTrCarCount(sTrainID), Integer)
 
                     Select Case drTrain.Item("TrType").ToString
                         Case "T", "M", "L" 'Time Freight, Mail, Milk
@@ -107,10 +155,10 @@
 
                     If drTrain.Item("trAllowLowPriority").ToString = "Y" Then
                         Select Case sTrainPriority
-                            Case "1"
+                            Case "H"
                                 sTrainLowPriority = "M"
 
-                            Case "2"
+                            Case "M"
                                 sTrainLowPriority = "L"
 
                         End Select
@@ -119,9 +167,6 @@
 
                     sTrainDirection = drTrain.Item("TrDirection").ToString
                     sTrainScope = drTrain.Item("TrScope").ToString
-
-                    ' No Through cars go on Local trains
-                    If sTrainScope = "Local" And msPageMode = PageMode.AddThru Then Exit For
 
                     'Get all the cars that could be carried by this train from the Catalog
                     dtCatForTrain = DataAccess_Build.spBuildCatForTrain(sTrainOrigin, drTrain.Item("TrType").ToString, sTrainID, msPageMode)
@@ -152,7 +197,7 @@
                             dtCatRec = DataAccess_Build.spBuildSingleCatRecord(drCatForTrain.Item("CatalogID").ToString)
 
                             'If the RouteVerso is Freight Agent Select or Start At Industry, then skip
-                            If dtCatRec.Rows(0).Item("RouteVerso").ToString = "Freight Agent Select" Or _
+                            If dtCatRec.Rows(0).Item("RouteVerso").ToString = "Freight Agent Select" Or
                                 dtCatRec.Rows(0).Item("RouteVerso").ToString = "Start at Industry" Then
                                 DataAccess_Build.spBuildTagRecSelect(drCatForTrain.Item("CatalogID").ToString, "S") ' S = Skip
                                 GoTo NextCatRec
@@ -161,7 +206,7 @@
 
                             'See if the waybill's Comm Priority is OK for this train
                             sBillPriority = DataAccess_Build.spBuildGetCommPriority(dtCatRec.Rows(0).Item("CatComm").ToString)
-                            If sBillPriority = sTrainPriority Or sBillPriority = sTrainLowPriority Then
+                            If sBillPriority <> sTrainPriority And sBillPriority <> sTrainLowPriority Then
                                 DataAccess_Build.spBuildTagRecSelect(drCatForTrain.Item("CatalogID").ToString, "N") ' N = Not Qualified
                                 GoTo NextCatRec
 
@@ -227,10 +272,39 @@ NextTrain:
 
             Loop
 
-        End Using
+        'End Using
 
     End Sub
 
+
+    Private Sub TrainSelectionPass_ProgressChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ProgressChangedEventArgs) Handles TrainSelectionPass.ProgressChanged
+
+        Dim ScreenUpdate As ScrUpdate = DirectCast(e.UserState, ScrUpdate)
+
+        lblPassesThruCounter.Text = "Passes thru Catalog: " & ScreenUpdate.PassNum
+        lblSelectingforTrain.Text = ScreenUpdate.TrSelect
+        'RefreshGrid()
+
+    End Sub
+
+
+    Private Sub TrainSelectionPass_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles TrainSelectionPass.RunWorkerCompleted
+
+        lblNowSelecting.Visible = False
+        lblSelectingforTrain.Text = "Completed"
+        cmdNext.Enabled = True
+        RefreshGrid()
+
+        If mbTooManyPasses = True Then
+            MsgBox("More than four passes were required to generate enough waybills for this session. " &
+                   "This often means there aren't enough waybills in the catalog to choose from. Please add more " &
+                   "as soon as possible. " & vbNewLine & vbNewLine & "Also note if there are some trains " &
+                   "which are difficult to fill, these require more waybills to be added for the locations these trains " &
+                   "service.", MsgBoxStyle.OkOnly, "Too Many Passes Required to Fill Trains")
+
+        End If
+
+    End Sub
 
 
     Private Sub cmdGo_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmdGo.Click
@@ -238,13 +312,12 @@ NextTrain:
         Select Case msPageMode
             Case PageMode.AddLocal, PageMode.AddThru
 
-                TrainSelectionPass()
+                cmdGo.Enabled = False
 
-                'Refresh the Train / Car count grid
-                RefreshGrid()
+                StartSelection()
 
                 'After first selection pass change the Go Label text
-                lblGo.Text = "To Run an Additional pass through the Catalog, click GO again"
+                lblGo.Text = ""
 
             Case PageMode.AddAgent
 
@@ -261,34 +334,33 @@ NextTrain:
 
     Private Sub frmGenerate_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        'Set the window Title with the Active RR
+        Me.Text = "Create - Generate a New Operating Session - " & gsMyRRName
+
         'Start off in Add Local Cars Mode
 
         msPageMode = PageMode.AddLocal
         lblInstructionTitle.Text = "Step One - Assign Local Traffic Waybills to Trains"
-        lblInstructions.Text = "Clicking the GO button below will start a process that attempts " & _
-            "to match up Waybills in the Catalog with trains that can bring them onto the layout.  " & _
-            "Waybills are randomly checked for their frequency values, and some valid waybills " & _
-            "may be skipped during selection.  If the trains are not filled to your satisfaction " & _
-            "you may run additional passes by clicking GO again which will start the process over, " & _
-            "checking the still unassigned waybills in the catalog.  When you are satisfied with " & _
-            "the local assignments, click the Next button."
+        lblInstructions.Text = "Click GO to match up Waybills in the Catalog with trains that can bring them onto the layout.  " &
+            "Waybills are randomly checked for their frequency values, And some valid waybills " &
+            "may be skipped during selection."
         lblGo.Text = ""
         lblNext.Text = "The next process assigns through cars to each train"
 
-        Dim drTrainLoads As DataRow
+        'Dim drTrainLoads As DataRow
         RefreshGrid()
 
-        'See if there are any assigned waybills in the waybill table.  If there are, increment the pass count by one
-        'and change the Go button Prompt text.
-        For Each drTrainLoads In dtTrainLoads.Rows
-            If Not drTrainLoads.Item("WaybillCount") Is DBNull.Value Then
-                If drTrainLoads.Item("WaybillCount") > 0 Then
-                    miSelectPassCount += 1
-                    lblGo.Text = "To Run an Additional pass through the Catalog, click GO again"
-                    Exit For
-                End If
-            End If
-        Next
+        'See If there are any assigned waybills in the waybill table.  If there are, increment the pass count by one
+        'And change the Go button Prompt text.
+        'For Each drTrainLoads In dtTrainLoads.Rows
+        '    If Not drTrainLoads.Item("WaybillCount") Is DBNull.Value Then
+        '        If drTrainLoads.Item("WaybillCount") > 0 Then
+        '            miSelectPassCount += 1
+        '            'lblGo.Text = "To Run an Additional pass through the Catalog, click GO again"
+        '            Exit For
+        '        End If
+        '    End If
+        'Next
 
     End Sub
 
@@ -296,7 +368,7 @@ NextTrain:
 
         Select Case msPageMode
             Case PageMode.AddLocal
-                dtTrainLoads = DataAccess_Build.spBuildTrainWBCount("Local") ' TODO: Check that value sent is numeric and either 1 or 2
+                dtTrainLoads = spBuildTrainWBCount("Local")
 
                 With dgvTrainLoadCount
                     .Columns("trCarLimit").HeaderText = "Local Car Limit"
@@ -309,7 +381,7 @@ NextTrain:
                 End With
 
             Case PageMode.AddThru
-                dtTrainLoads = DataAccess_Build.spBuildTrainWBCount("Thru") ' Should be "2"
+                dtTrainLoads = spBuildTrainWBCount("Thru")
 
                 With dgvTrainLoadCount
                     .Columns("trCarLimit").HeaderText = "Max Car Limit"
@@ -340,17 +412,16 @@ NextTrain:
                 'Reset the pass counter
                 ReDim miPassCount(0)
 
+                cmdNext.Enabled = False
+
                 'Update the Instructions and prompts
                 lblInstructionTitle.Text = "Step Two - Assign Through Traffic Waybills to Trains"
-                lblInstructions.Text = "Clicking the GO button below will start a process that attempts " & _
-                    "to match up Through Waybills in the Catalog with trains that can bring them onto the layout.  " & _
-                    "Waybills are randomly checked for their frequency values, and some valid waybills " & _
-                    "may be skipped during selection.  If the trains are not filled to your satisfaction " & _
-                    "you may run additional passes by clicking GO again which will start the process over, " & _
-                    "checking the still unassigned waybills in the catalog.  When you are satisfied with " & _
-                    "the through assignments, click the Next button."
+                lblInstructions.Text = "Click the GO button to match up Through Waybills " &
+                    "in the Catalog with trains that can bring them onto the layout.  " &
+                    "Waybills are randomly checked for their frequency values, And some valid waybills " &
+                    "may be skipped during selection."
                 lblGo.Text = ""
-                lblNext.Text = "The next process creates Agent Select and Start at Industry Waybills"
+                lblNext.Text = "The next process creates Agent Select And Start at Industry Waybills"
                 RefreshGrid()
 
             Case PageMode.AddThru
@@ -361,13 +432,10 @@ NextTrain:
                 ReDim miPassCount(0)
 
                 'Update the Instructions and prompts
-                lblInstructionTitle.Text = "Step Three - Agent Select and Start at Industry Waybills"
-                lblInstructions.Text = "Clicking the GO button below will start a process that attempts " & _
-                    "to add Agent Select and Start at Industry Waybills from the Catalog that will be printed " & _
-                    "along with the waybills already selected. Each click of the GO button will " & _
-                    "run pass through the catalog for these waybillsadding them until you click next or " & _
-                    "there are no more to add.When you are satisfied with the Agent and Industry assignments, " & _
-                    "click the Next button."
+                lblInstructionTitle.Text = "Step Three - Agent Select And Start at Industry Waybills"
+                lblInstructions.Text = "Click the GO button below to add 'Agent Select' and 'Start at Industry' " &
+                    "Waybills from the Catalog that will be printed " &
+                    "along with the local waybills already selected."
                 lblGo.Text = "Click to add these Waybills"
                 lblNext.Text = "Click here when finished."
                 ShowAgentBills()
@@ -377,9 +445,9 @@ NextTrain:
                 msPageMode = PageMode.Close
 
                 lblInstructionTitle.Text = ""
-                lblInstructions.Text = "Congratulations! You have completed the automatic waybill generation process. " & _
-                vbNewLine & vbNewLine & "From here you may use the Session Fine-Tuning window to review what bills have " & _
-                "been selected for each train, change the car blocking order or remove and add specific waybills to " & _
+                lblInstructions.Text = "Congratulations! You have completed the automatic waybill generation process. " &
+                vbNewLine & vbNewLine & "From here you may use the Session Fine-Tuning window to review what bills have " &
+                "been selected for each train, change the car blocking order or remove and add specific waybills to " &
                 "trains. Select the Print Waybills option from the Process menu to print your session waybills."
                 cmdNext.Text = "Close"
                 dgvTrainLoadCount.Visible = False
@@ -392,6 +460,8 @@ NextTrain:
                 Me.Close()
 
         End Select
+
+        cmdGo.Enabled = True
 
     End Sub
 

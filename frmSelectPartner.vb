@@ -1,8 +1,4 @@
-﻿Imports System.Windows.Forms
-Imports System.Data
-Imports System.Data.OleDb
-
-Public Class frmSelectPartner
+﻿Public Class frmSelectPartner
 
     Private msCommodity As String
     Private msPartnerShipRecv As String
@@ -16,7 +12,7 @@ Public Class frmSelectPartner
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
 
-        ''Copy the selected partner data back to the calling form
+        'Copy the selected partner data back to the calling form
         frmMatchup.msSelectedPartner = msSelection
 
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
@@ -45,6 +41,7 @@ Public Class frmSelectPartner
             msCommodity = "Any"
             msSearchValues(1) = ""
             msStateList = StateList
+            'TODO: Change ANY above to FAK - Freight All Kinds
 
         ElseIf Mid(Commodity, 1, 3) <> "LCL" Then
             sCommodity = Commodity
@@ -79,6 +76,7 @@ Public Class frmSelectPartner
         chkOffline.Checked = True
         chkLCL.Checked = False
         chkShowAny.Checked = False
+        'TODO: Change ANY above to FAK - Freight All Kinds
         cboFilterBy.Text = "No Filter"
         cboFilterByValue.Items.Clear()
         'dgvPartners.Rows.Clear()
@@ -135,6 +133,7 @@ Public Class frmSelectPartner
 
         If cboCommodity.Text = "Any" Then
             msSearchValues(1) = ""
+            'TODO: Change ANY above to FAK - Freight All Kinds
 
         ElseIf cboCommodity.Text <> "" Then
             msSearchValues(1) = cboCommodity.Text
@@ -329,12 +328,29 @@ Public Class frmSelectPartner
 
     Private Sub frmSelectPartner_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        'Set the window Title with the Active RR
+        Me.Text = "Catalog - Select Secondary Trading Partners - " & gsMyRRName
+
+        'Display window at the lower left of the Primary MDI window
+        Me.Top = frmMain.Top + 380
+        Me.Left = frmMain.Left + 520
+
         'Set Tooltip parameters
         ttpSelPartner.AutoPopDelay = 2000
         ttpSelPartner.ReshowDelay = 500
         ttpSelPartner.InitialDelay = 5000
         ttpSelPartner.SetToolTip(chkLCL, "For loads bound for more than one receiver, place check here to select an LCL terminal instead of a single receiver.")
         ttpSelPartner.SetToolTip(chkShowAny, "When checked, show destinations that will accept Any Load - major distributor, warehouse etc.")
+        'TODO: Change ANY above to FAK - Freight All Kinds
+
+    End Sub
+
+    Private Sub dgvPartners_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvPartners.CellDoubleClick
+
+        'Copy the selected partner data back to the calling form
+        frmMatchup.msSelectedPartner = msSelection
+
+        Me.DialogResult = System.Windows.Forms.DialogResult.OK
 
     End Sub
 

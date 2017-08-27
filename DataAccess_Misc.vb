@@ -1,6 +1,4 @@
-﻿Imports System.Data.SQLite
-
-Module DataAccess_Misc
+﻿Module DataAccess_Misc
 
     Public Function spCatDelRec(ByVal CatalogID As String) As Integer
 
@@ -66,8 +64,8 @@ Module DataAccess_Misc
 
     Public Function spMainRptIndByStateWComm() As DataTable
 
-        Dim sSQL As String = "SELECT IndName, IndCity, IndState, IndRR, IndShipRecv, Commodity, Frequency, Notes " & _
-            "FROM Industry WHERE Active = 'X' AND RRID = '" & gsMyRR_ID & "' ORDER BY IndState, IndCity, IndName, Commodity;"
+        Dim sSQL As String = "SELECT IndName, IndCity, IndState, IndRR, IndShipRecv, Commodity, Frequency, Notes " &
+            "FROM Industry AS Industry1 WHERE Active = 'X' AND RRID = '" & gsMyRR_ID & "' ORDER BY IndState, IndCity, IndName, Commodity;"
         Return clsSQLiteDB.GetDataTable(sSQL, cnHTT)
 
     End Function
@@ -126,8 +124,11 @@ Module DataAccess_Misc
 
     Public Function spMatchIntRR() As DataTable
 
-        Dim sSQL As String = "SELECT DISTINCT Int.IntForeignRR || ' - ' || T.TownName AS RRTown, Int.IntForeignRRAlias AS IntAlias " & _
-            "FROM Interchange Int LEFT JOIN Town T ON T.TownCallSign = Int.IntTown " & _
+        'Dim sSQL As String = "SELECT DISTINCT Int.IntForeignRR || ' - ' || T.TownName AS RRTown, Int.IntForeignRRAlias AS IntAlias " & _
+        '    "FROM Interchange Int LEFT JOIN Town T ON T.TownCallSign = Int.IntTown " & _
+        '     "AND Int.RRID = '" & gsMyRR_ID & "' AND T.RRID = '" & gsMyRR_ID & "';"
+        Dim sSQL As String = "SELECT DISTINCT Int.IntForeignRR || ' - ' || T.TownName AS RRTown, Int.IntID AS IntAlias " &
+            "FROM Interchange Int LEFT JOIN Town T ON T.TownCallSign = Int.IntTown " &
              "AND Int.RRID = '" & gsMyRR_ID & "' AND T.RRID = '" & gsMyRR_ID & "';"
         Return clsSQLiteDB.GetDataTable(sSQL, cnHTT)
 
@@ -142,9 +143,9 @@ Module DataAccess_Misc
     'End Function
 
 
-    Public Function spMatchIntRRInitials(ByRef ForeignRRAlias As String) As String
+    Public Function spMatchIntRRInitials(ByRef IntID As String) As String
 
-        Dim sSQL As String = "SELECT intForeignRR From Interchange WHERE intForeignRRAlias = '" & ForeignRRAlias & "' AND RRID = '" & gsMyRR_ID & "';"
+        Dim sSQL As String = "SELECT intForeignRR From Interchange WHERE intID = '" & IntID & "' AND RRID = '" & gsMyRR_ID & "';"
         Return clsSQLiteDB.ExecuteScalar(sSQL, cnHTT)
 
     End Function
@@ -162,8 +163,11 @@ Module DataAccess_Misc
 
     Public Function spMatchIntPoint(ByVal ForeignRRAlias As String) As String
 
-        Dim sSQL As String = "SELECT Town.TownName FROM Town LEFT JOIN Interchange ON Interchange.IntTown = Town.TownCallSign " & _
-            "WHERE Interchange.intForeignRRAlias = '" & ForeignRRAlias & "' " & _
+        'Dim sSQL As String = "SELECT Town.TownName FROM Town LEFT JOIN Interchange ON Interchange.IntTown = Town.TownCallSign " & _
+        '    "WHERE Interchange.intForeignRRAlias = '" & ForeignRRAlias & "' " & _
+        '    "AND Town.RRID = '" & gsMyRR_ID & "' AND Interchange.RRID = '" & gsMyRR_ID & "';"
+        Dim sSQL As String = "SELECT Town.TownName FROM Town LEFT JOIN Interchange ON Interchange.IntTown = Town.TownCallSign " &
+            "WHERE Interchange.intID = '" & ForeignRRAlias & "' " &
             "AND Town.RRID = '" & gsMyRR_ID & "' AND Interchange.RRID = '" & gsMyRR_ID & "';"
         Return clsSQLiteDB.ExecuteScalar(sSQL, cnHTT)
 
@@ -273,28 +277,31 @@ Module DataAccess_Misc
     End Function
 
 
-    Public Function spThruCatIns(ByRef CommID As String, ByVal CommIdx As String, ByVal CommSeq As String, _
-                                   ByVal CarType As String, ByVal Comm As String, _
-                                   ByVal Notes As String, ByVal PrimarySR As String, _
-                                   ByVal Frequency As String, ByVal Spots As String, _
-                                   ByVal PriRR As String, ByVal PriInd As String, _
-                                   ByVal PriCity As String, ByVal PriState As String, _
-                                   ByVal SecRR As String, ByVal SecInd As String, _
-                                   ByVal SecCity As String, ByVal SecState As String, _
-                                   ByVal RouteIntOnAt As String, ByVal RouteIntOnWith As String, _
-                                   ByVal RouteIntOffAt As String, ByVal RouteIntOffWith As String, _
-                                   ByVal PrintLoadSide1 As String, ByVal RouteVerso As String, _
+    Public Function spThruCatIns(ByRef CommID As String, ByVal CommIdx As String, ByVal CommSeq As String,
+                                   ByVal CarType As String, ByVal Comm As String,
+                                   ByVal Notes As String, ByVal PrimarySR As String,
+                                   ByVal Frequency As String, ByVal Spots As String,
+                                   ByVal PriRR As String, ByVal PriInd As String,
+                                   ByVal PriCity As String, ByVal PriState As String,
+                                   ByVal PriClic As String,
+                                   ByVal SecRR As String, ByVal SecInd As String,
+                                   ByVal SecCity As String, ByVal SecState As String,
+                                   ByVal SecCLIC As String,
+                                   ByVal RouteIntOnAt As String, ByVal RouteIntOnWith As String,
+                                   ByVal RouteIntOffAt As String, ByVal RouteIntOffWith As String,
+                                   ByVal RouteIntDir As String,
+                                   ByVal PrintLoadSide1 As String, ByVal RouteVerso As String,
                                    ByVal RouteIntVia As String, ByVal PrintMTYForHome As String) As Integer
 
-        Dim sSQL As String = "INSERT INTO Catalog (RRID, CatCommID, CatCommIdx, CatCommSeq, CatCarType, CatComm, " & _
-            "CatNotes, CatPrimarySR, CatFrequency, CatSpots, PriRR, PriInd, PriCity, PriState, SecRR, SecInd, " & _
-            "SecCity, SecState, RouteIntOnAt, RouteIntOnWith, RouteIntOffAt, RouteIntOffWith, PrintLoadSide1, " & _
-            "RouteVerso, RouteIntVia, PrintMTYForHome) " & _
-            "VALUES ('" & gsMyRR_ID & "', '" & CommID & "', '" & CommIdx & "', '" & CommSeq & "', '" & CarType & "', '" & Comm & "', '" & _
-            Notes & "', '" & PrimarySR & "', '" & Frequency & "', '" & Spots & "', '" & PriRR & "', '" & PriInd & "', '" & _
-            PriCity & "', '" & PriState & "', '" & SecRR & "', '" & SecInd & "', '" & SecCity & "', '" & _
-            SecState & "', '" & RouteIntOnAt & "', '" & RouteIntOnWith & "', '" & RouteIntOffAt & "', '" & _
-            RouteIntOffWith & "', '" & PrintLoadSide1 & "', '" & RouteVerso & "', '" & RouteIntVia & "', '" & _
+        Dim sSQL As String = "INSERT INTO Catalog (RRID, CatCommID, CatCommIdx, CatCommSeq, CatCarType, CatComm, " &
+            "CatNotes, CatPrimarySR, CatFrequency, CatSpots, PriRR, PriInd, PriCity, PriState, PriClic, SecRR, SecInd, " &
+            "SecCity, SecState, SecClic, RouteIntOnAt, RouteIntOnWith, RouteIntOffAt, RouteIntOffWith, RouteIntDir, PrintLoadSide1, " &
+            "RouteVerso, RouteIntVia, PrintMTYForHome) " &
+            "VALUES ('" & gsMyRR_ID & "', '" & CommID & "', '" & CommIdx & "', '" & CommSeq & "', '" & CarType & "', '" & Comm & "', '" &
+            Notes & "', '" & PrimarySR & "', '" & Frequency & "', '" & Spots & "', '" & PriRR & "', '" & PriInd & "', '" &
+            PriCity & "', '" & PriState & "', '" & PriClic & "', '" & SecRR & "', '" & SecInd & "', '" & SecCity & "', '" &
+            SecState & "', '" & SecCLIC & "', '" & RouteIntOnAt & "', '" & RouteIntOnWith & "', '" & RouteIntOffAt & "', '" &
+            RouteIntOffWith & "', '" & RouteIntDir & "', '" & PrintLoadSide1 & "', '" & RouteVerso & "', '" & RouteIntVia & "', '" &
             PrintMTYForHome & "');"
         Return clsSQLiteDB.ExecuteNonQuery(sSQL, cnHTT)
 
@@ -441,14 +448,12 @@ Module DataAccess_Misc
     End Function
 
 
+    Public Function spIndsWithCommsState() As DataTable
 
+        Dim sSQL As String = "SELECT * FROM vwRptIndsWithCommsState;"
+        Return clsSQLiteDB.GetDataTable(sSQL, cnHTT)
 
-
-
-
-
-
-
+    End Function
 
 
 

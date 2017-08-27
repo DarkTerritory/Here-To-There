@@ -1,6 +1,4 @@
-﻿Imports System.Data.SQLite
-
-Module DataAccess_Get
+﻿Module DataAccess_Get
 
     Public Function spGetAARCarType() As DataTable
 
@@ -145,7 +143,7 @@ Module DataAccess_Get
 
     Public Function spGetDivName(ByVal TownCallSign As String) As String
 
-        Dim sSQL As String = "SELECT Division.DivName FROM Town LEFT OUTER JOIN Division ON Town.TownDiv = Division.DivNum WHERE Town.TownCallSign =  '" & TownCallSign & "' AND RRID = '" & gsMyRR_ID & "';"
+        Dim sSQL As String = "SELECT Division.DivName FROM Town LEFT OUTER JOIN Division ON Town.TownDiv = Division.DivNum WHERE Town.TownCallSign =  '" & TownCallSign & "' AND town.RRID = '" & gsMyRR_ID & "';"
         Return clsSQLiteDB.ExecuteScalar(sSQL, cnHTT)
 
     End Function
@@ -215,16 +213,25 @@ Module DataAccess_Get
 
     Public Function spGetIntRRs(ByVal InterchangeTown As String) As DataTable
 
-        Dim sSQL As String = "SELECT DISTINCT Interchange.IntForeignRR, AARRRCode.Railroad FROM Interchange, AARRRCode WHERE Interchange.IntForeignRR = AARRRCode.ReportMark " & _
-            "AND Interchange.IntTown =  '" & InterchangeTown & "' AND Interchange.RRID = '" & gsMyRR_ID & "';"
+        Dim sSQL As String = "SELECT DISTINCT Interchange.IntForeignRR, Interchange.IntStagingArea FROM Interchange WHERE " &
+            "Interchange.IntTown =  '" & InterchangeTown & "' AND Interchange.RRID = '" & gsMyRR_ID & "';"
+
+        'Dim sSQL As String = "SELECT DISTINCT Interchange.IntForeignRR, AARRRCode.Railroad FROM Interchange, AARRRCode WHERE Interchange.IntForeignRR = AARRRCode.ReportMark " & _
+        '    "AND Interchange.IntTown =  '" & InterchangeTown & "' AND Interchange.RRID = '" & gsMyRR_ID & "';"
         Return clsSQLiteDB.GetDataTable(sSQL, cnHTT)
 
     End Function
 
 
-    Public Function spGetMyRR(ByVal RailroadID As String) As DataTable
+    Public Function spGetMyRR(Optional ByVal RRID As Integer = -1) As DataTable
 
-        Dim sSQL As String = "SELECT RRName, RRState, RRInitials, RRNickname, RREra, RROpSessionDate, RRPaperworkDate, RRPrototype FROM MyRR WHERE RRID =  '" & RailroadID & "';"
+        Dim sSQL As String
+
+        If RRID = -1 Then
+            sSQL = "SELECT RRID, RRName, RRState, RRInitials, RRNickname, RREra, RROpSessionDate, RRPaperworkDate, RRPrototype FROM MyRR;"
+        Else
+            sSQL = "SELECT RRID, RRName, RRState, RRInitials, RRNickname, RREra, RROpSessionDate, RRPaperworkDate, RRPrototype FROM MyRR WHERE RRID = " & RRID & ";"
+        End If
         Return clsSQLiteDB.GetDataTable(sSQL, cnHTT)
 
     End Function
@@ -332,16 +339,28 @@ Module DataAccess_Get
 
     Public Function spGetSingleInd(ByVal IndustryID As String) As DataTable
 
-        Dim sSql As String = "SELECT Ind.IndID, Ind.Active, Ind.CLIC, Ind.IndName, Ind.IndCity, " & _
-            "Ind.IndState, CASE AAR.Railroad WHEN NULL THEN Ind.IndRR ELSE AAR.Railroad END AS Railroad, " & _
-            "Lk.LkDesc AS ShipRecv, Ind.Commodity, Sid.SidingNotes AS Siding, Frq.FreqDesc AS Frequency, " & _
-            "Ind.IndRR, Ind.Spots, Ind.Notes FROM (((Industry AS Ind " & _
-            "LEFT JOIN AARRRCode AS AAR ON Ind.IndRR = AAR.ReportMark) " & _
-            "LEFT JOIN Siding AS Sid ON Ind.Siding = Sid.SidingID) " & _
-            "LEFT JOIN Frequency AS Frq ON Ind.Frequency = Frq.FreqID) " & _
-            "INNER JOIN Lookup AS Lk ON Ind.IndShipRecv = Lk.LkCode " & _
-            "WHERE (((Lk.LkGroup)='ShipRecv'))" & _
-            "AND Ind.IndID = '" & IndustryID & "' AND Ind.RRID = '" & gsMyRR_ID & "' AND Sid.RRID = '" & gsMyRR_ID & "';"
+        Dim sSql As String = "SELECT Ind.IndID, Ind.Active, Ind.CLIC, Ind.IndName, Ind.IndCity, " &
+            "Ind.IndState, CASE AAR.Railroad WHEN NULL THEN Ind.IndRR ELSE AAR.Railroad END AS Railroad, " &
+            "Lk.LkDesc AS ShipRecv, Ind.Commodity, Sid.SidingNotes AS Siding, Frq.FreqDesc AS Frequency, " &
+            "Ind.IndRR, Ind.Spots, Ind.Notes FROM (((Industry AS Ind " &
+            "LEFT JOIN AARRRCode AS AAR ON Ind.IndRR = AAR.ReportMark) " &
+            "LEFT JOIN Siding AS Sid ON Ind.Siding = Sid.SidingID) " &
+            "LEFT JOIN Frequency AS Frq ON Ind.Frequency = Frq.FreqID) " &
+            "INNER JOIN Lookup AS Lk ON Ind.IndShipRecv = Lk.LkCode " &
+            "WHERE (((Lk.LkGroup)='ShipRecv'))" &
+            "AND Ind.IndID = '" & IndustryID & "' AND Ind.RRID = '" & gsMyRR_ID & "';"
+
+        'Statement below uses Siding table for query but doesn't help with Through Car Selection, commented 8/15/2017 CJB
+        'Dim sSql As String = "SELECT Ind.IndID, Ind.Active, Ind.CLIC, Ind.IndName, Ind.IndCity, " & _
+        '    "Ind.IndState, CASE AAR.Railroad WHEN NULL THEN Ind.IndRR ELSE AAR.Railroad END AS Railroad, " & _
+        '    "Lk.LkDesc AS ShipRecv, Ind.Commodity, Sid.SidingNotes AS Siding, Frq.FreqDesc AS Frequency, " & _
+        '    "Ind.IndRR, Ind.Spots, Ind.Notes FROM (((Industry AS Ind " & _
+        '    "LEFT JOIN AARRRCode AS AAR ON Ind.IndRR = AAR.ReportMark) " & _
+        '    "LEFT JOIN Siding AS Sid ON Ind.Siding = Sid.SidingID) " & _
+        '    "LEFT JOIN Frequency AS Frq ON Ind.Frequency = Frq.FreqID) " & _
+        '    "INNER JOIN Lookup AS Lk ON Ind.IndShipRecv = Lk.LkCode " & _
+        '    "WHERE (((Lk.LkGroup)='ShipRecv'))" & _
+        '    "AND Ind.IndID = '" & IndustryID & "' AND Ind.RRID = '" & gsMyRR_ID & "' AND Sid.RRID = '" & gsMyRR_ID & "';"
         Return clsSQLiteDB.GetDataTable(sSql, cnHTT)
 
     End Function
@@ -398,20 +417,21 @@ Module DataAccess_Get
 
     Public Function spGetTowns() As DataTable
 
-        Dim sSql As String = "SELECT Town.TownID, Town.TownName, AARState.AARStateName AS TownState, " & _
-           "Town.TownCallSign, Lookup.LkDesc AS TownFrtHub, Town_1.TownName AS TownServedBy, " & _
-           "Division.DivName AS TownDiv, Town_2.TownName as TownEastOf, Town_3.TownName as TownWestOf, Lookup1.LkDesc AS TownLocal " & _
-           "FROM Town LEFT OUTER JOIN Division ON Town.TownDiv = Division.DivNum " & _
-           "LEFT JOIN Town AS Town_1 ON Town.TownServedBy = Town_1.TownCallSign " & _
-           "LEFT JOIN AARState ON Town.TownState = AARState.AARState " & _
-           "LEFT JOIN Lookup ON Town.TownFrtHub = Lookup.LkCode AND Lookup.LkGroup = 'YesNo' " & _
-           "LEFT JOIN Lookup Lookup1 ON Town.TownLocal = Lookup1.LkCode AND Lookup1.LkGroup = 'YesNo' " & _
-           "LEFT JOIN Town AS Town_2 ON Town.TownEastOf = Town_2.TownCallSign " & _
-           "LEFT JOIN Town AS Town_3 ON Town.TownWestOf = Town_3.TownCallSign " & _
-           "AND Town.RRID = '" & gsMyRR_ID & "' " & _
-           "AND Town_1.RRID = '" & gsMyRR_ID & "' " & _
-           "AND Town_2.RRID = '" & gsMyRR_ID & "' " & _
-           "AND Town_3.RRID = '" & gsMyRR_ID & "' " & _
+        Dim sSql As String = "SELECT Town.TownID, Town.TownName, AARState.AARStateName AS TownState, " &
+           "Town.TownCallSign, Lookup.LkDesc AS TownFrtHub, Town_1.TownName AS TownServedBy, " &
+           "Division.DivName AS TownDiv, Town_2.TownName as TownEastOf, Town_3.TownName as TownWestOf, Lookup1.LkDesc AS TownLocal, " &
+           "(SELECT COUNT(*) FROM Siding WHERE SidingTown = Town.TownCallSign AND RRID = '" & gsMyRR_ID & "') As Sidings " &
+           "FROM Town LEFT OUTER JOIN Division On Town.TownDiv = Division.DivNum " &
+           "LEFT JOIN Town As Town_1 On Town.TownServedBy = Town_1.TownCallSign " &
+           "LEFT JOIN AARState On Town.TownState = AARState.AARState " &
+           "LEFT JOIN Lookup On Town.TownFrtHub = Lookup.LkCode And Lookup.LkGroup = 'YesNo' " &
+           "LEFT JOIN Lookup Lookup1 ON Town.TownLocal = Lookup1.LkCode AND Lookup1.LkGroup = 'TownLocal' " &
+           "LEFT JOIN Town AS Town_2 ON Town.TownEastOf = Town_2.TownCallSign " &
+           "LEFT JOIN Town AS Town_3 ON Town.TownWestOf = Town_3.TownCallSign " &
+           "AND Town.RRID = '" & gsMyRR_ID & "' " &
+           "AND Town_1.RRID = '" & gsMyRR_ID & "' " &
+           "AND Town_2.RRID = '" & gsMyRR_ID & "' " &
+           "AND Town_3.RRID = '" & gsMyRR_ID & "' " &
            "ORDER BY Town.TownName;"
         Return clsSQLiteDB.GetDataTable(sSql, cnHTT)
 
@@ -476,7 +496,12 @@ Module DataAccess_Get
     End Function
 
 
+    Public Function spGetNextMyRRNum() As Integer
 
+        Dim sSQL As String = "SELECT MAX(RRID) FROM MyRR;"
+        Return clsSQLiteDB.ExecuteScalar(sSQL, cnHTT)
+
+    End Function
 
 
 

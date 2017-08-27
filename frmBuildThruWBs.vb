@@ -1,8 +1,4 @@
-﻿Imports System
-Imports System.Data
-Imports System.Data.SqlClient
-
-Public Class frmBuildThruWBs
+﻿Public Class frmBuildThruWBs
 
     Private dtOrigin As New DataTable
     Private dtOriginInd As New DataTable
@@ -30,14 +26,17 @@ Public Class frmBuildThruWBs
     Private msPriInd As String = ""
     Private msPriCity As String = ""
     Private msPriState As String = ""
+    Private msPriCLIC As String = ""
     Private msSecRR As String = ""
     Private msSecInd As String = ""
     Private msSecCity As String = ""
     Private msSecState As String = ""
+    Private msSecCLIC As String = ""
     Private msIntOnAt As String = ""
     Private msIntOnWith As String = ""
     Private msIntOffAt As String = ""
     Private msIntOffWith As String = ""
+    Private msRouteIntDir As String = ""
     Private msRouteIntVia As String = ""
     Private msLoadSideOne As String = ""
     Private msVersoType As String = ""
@@ -53,6 +52,9 @@ Public Class frmBuildThruWBs
 
 
     Private Sub frmBuildThruWBs_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        'Set the window Title with the Active RR
+        Me.Text = "Catalog - Build Through Waybills - " & gsMyRRName
 
         Dim x As Integer
 
@@ -266,7 +268,7 @@ Public Class frmBuildThruWBs
         Dim dtStagingOnRR As New DataTable
         dtStagingOnRR = DataAccess_Get.spGetIntRRs(cboStagingOn.SelectedValue.ToString)
         cboOnRR.DataSource = dtStagingOnRR
-        cboOnRR.DisplayMember = "Railroad"
+        cboOnRR.DisplayMember = "IntStagingArea"
         cboOnRR.ValueMember = "IntForeignRR"
 
     End Sub
@@ -280,8 +282,15 @@ Public Class frmBuildThruWBs
         Dim dtStagingOffRR As New DataTable
         dtStagingOffRR = DataAccess_Get.spGetIntRRs(cboStagingOff.SelectedValue.ToString)
         cboOffRR.DataSource = dtStagingOffRR
-        cboOffRR.DisplayMember = "Railroad"
+        cboOffRR.DisplayMember = "IntStagingArea"
         cboOffRR.ValueMember = "IntForeignRR"
+
+        ''Load the list of railroads at the selected staging point
+        'Dim dtStagingOffRR As New DataTable
+        'dtStagingOffRR = DataAccess_Get.spGetIntRRs(cboStagingOff.SelectedValue.ToString)
+        'cboOffRR.DataSource = dtStagingOffRR
+        'cboOffRR.DisplayMember = "Railroad"
+        'cboOffRR.ValueMember = "IntForeignRR"
 
     End Sub
 
@@ -290,7 +299,7 @@ Public Class frmBuildThruWBs
     Private Sub cmdClearFields_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdClearFields.Click
 
         mbResponse = MsgBox("Are you sure you want to clear all data fields and start again?", MsgBoxStyle.YesNo + MsgBoxStyle.Question)
-        If mbResponse = Windows.Forms.DialogResult.No Then Exit Sub
+        If mbResponse = DialogResult.No Then Exit Sub
 
         mbLoading = True
         ClearFields()
@@ -343,14 +352,17 @@ Public Class frmBuildThruWBs
         msPriInd = ""
         msPriCity = ""
         msPriState = ""
+        msPriCLIC = ""
         msSecRR = ""
         msSecInd = ""
         msSecCity = ""
         msSecState = ""
+        msSecCLIC = ""
         msIntOnAt = ""
         msIntOnWith = ""
         msIntOffAt = ""
         msIntOffWith = ""
+        msRouteIntDir = ""
         msRouteIntVia = ""
         msLoadSideOne = ""
         msVersoType = ""
@@ -464,6 +476,7 @@ Public Class frmBuildThruWBs
         msPriInd = dtIndDetail.Rows(0).Item("IndName").ToString
         msPriCity = dtIndDetail.Rows(0).Item("IndCity").ToString
         msPriState = dtIndDetail.Rows(0).Item("IndState").ToString
+        msPriCLIC = "O/L " & dtIndDetail.Rows(0).Item("IndState").ToString
 
         'Seconary Industry
         dtIndDetail = DataAccess_Get.spGetSingleInd(msDestIndID)
@@ -478,13 +491,15 @@ Public Class frmBuildThruWBs
             msSecInd = dtIndDetail.Rows(0).Item("IndName").ToString
             msSecCity = dtIndDetail.Rows(0).Item("IndCity").ToString
             msSecState = dtIndDetail.Rows(0).Item("IndState").ToString
+            msSecCLIC = "O/L " & dtIndDetail.Rows(0).Item("IndState").ToString
         End If
 
         'Interchanges
-        msIntOffAt = cboStagingOff.SelectedValue.ToString
-        msIntOffWith = cboOffRR.SelectedValue.ToString
-        msIntOnAt = cboStagingOn.SelectedValue.ToString
-        msIntOnWith = cboOnRR.SelectedValue.ToString
+        msIntOffAt = cboStagingOff.SelectedValue.ToString & ""
+        msIntOffWith = cboOffRR.SelectedValue.ToString & ""
+        msIntOnAt = cboStagingOn.SelectedValue.ToString & ""
+        msIntOnWith = cboOnRR.SelectedValue.ToString & ""
+        msRouteIntDir = cboOffRR.Text.ToString
 
         msVersoType = "Through"
 
@@ -565,6 +580,7 @@ Public Class frmBuildThruWBs
             msPriInd = dtIndDetail.Rows(0).Item("IndName").ToString
             msPriCity = dtIndDetail.Rows(0).Item("IndCity").ToString
             msPriState = dtIndDetail.Rows(0).Item("IndState").ToString
+            msPriCLIC = "O/L " & dtIndDetail.Rows(0).Item("IndState").ToString
 
             'Seconary Industry
 
@@ -573,6 +589,7 @@ Public Class frmBuildThruWBs
             msSecInd = ""
             msSecCity = ""
             msSecState = ""
+            msSecCLIC = "O/L " & dtIndDetail.Rows(0).Item("IndState").ToString
 
 
             'Interchanges
@@ -580,6 +597,7 @@ Public Class frmBuildThruWBs
             msIntOffWith = cboOnRR.SelectedValue.ToString
             msIntOnAt = cboStagingOff.SelectedValue.ToString
             msIntOnWith = cboOffRR.SelectedValue.ToString
+            msRouteIntDir = cboOffRR.SelectedText.ToString
 
             msVersoType = "Through"
 
@@ -606,31 +624,34 @@ Public Class frmBuildThruWBs
 
     Private Sub SaveWaybill()
 
-        DataAccess_Misc.spThruCatIns( _
-        msCommID, _
-        msCommIdx, _
-        msCommSeq, _
-        msCarType, _
-        msComm, _
-        msNotes, _
-        msPrimarySR, _
-        msFrequency, _
-        msSpots, _
-        msPriRR, _
-        msPriInd, _
-        msPriCity, _
-        msPriState, _
-        msSecRR, _
-        msSecInd, _
-        msSecCity, _
-        msSecState, _
-        msIntOnAt & "", _
-        msIntOnWith & "", _
-        msIntOffAt & "", _
-        msIntOffWith & "", _
-        msLoadSideOne, _
-        msVersoType, _
-        msRouteIntVia, _
+        DataAccess_Misc.spThruCatIns(
+        msCommID,
+        msCommIdx,
+        msCommSeq,
+        msCarType,
+        msComm,
+        msNotes,
+        msPrimarySR,
+        msFrequency,
+        msSpots,
+        msPriRR,
+        msPriInd,
+        msPriCity,
+        msPriState,
+        msPriCLIC,
+        msSecRR,
+        msSecInd,
+        msSecCity,
+        msSecState,
+        msSecCLIC,
+        msIntOnAt & "",
+        msIntOnWith & "",
+        msIntOffAt & "",
+        msIntOffWith & "",
+        msRouteIntDir,
+        msLoadSideOne,
+        msVersoType,
+        msRouteIntVia,
         msPrintMTYForHome)
 
     End Sub
@@ -656,4 +677,6 @@ Public Class frmBuildThruWBs
         End If
 
     End Sub
+
+
 End Class

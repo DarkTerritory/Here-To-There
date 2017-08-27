@@ -23,61 +23,61 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
-        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.StartANewSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator
-        Me.LoadSavedSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.SaveCurrentSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator
-        Me.ImportIndustryDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ExportIndustryDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator
-        Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ProcessToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.GenerateLocalIndustryWaybillsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.FineTuneCurrentSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.PrintDurrentSessionWaybillsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.mnuCatalog = New System.Windows.Forms.ToolStripMenuItem
-        Me.mnuCatalogReview = New System.Windows.Forms.ToolStripMenuItem
-        Me.mnuCatalogSelectIndComm = New System.Windows.Forms.ToolStripMenuItem
-        Me.mnuCatalogMatchInd = New System.Windows.Forms.ToolStripMenuItem
-        Me.CreateThroughWaybillsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.MyRailroadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
-        Me.DivisionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.TownsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.SidingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.InterchangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.StagingAreasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator
-        Me.CommoditiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.AddEditCommoditiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.IndustriesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.AddEditIndustriesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ImportIndustriesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ExportIndustriesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.TrainsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.AARDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.AARRailroadCodesAndNamesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.AARCarTypesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.AARRegionsAndNamesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.AARStatesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator
-        Me.OtherToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ReportsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.IndustriesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.IndustriesByStateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.IndustriesByStataWithCommoditiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.CommoditiesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.CommodityBalanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.TrainsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.TrainReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.InboundTrainListByDepartureTimeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.InboundTrainListByTrainIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.mnuFileSelectRailroad = New System.Windows.Forms.ToolStripMenuItem
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuFileSelectRailroad = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.LoadSavedSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveCurrentSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ImportIndustryDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportIndustryDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
+        Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ProcessToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StartANewSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GenerateLocalIndustryWaybillsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FineTuneCurrentSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PrintCurrentSessionWaybillsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuCatalog = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuCatalogReview = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuCatalogSelectIndComm = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuCatalogMatchInd = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CreateThroughWaybillsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MyRailroadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.DivisionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TownsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SidingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InterchangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StagingAreasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.CommoditiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddEditCommoditiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IndustriesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddEditIndustriesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportIndustriesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportIndustriesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TrainsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AARDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AARRailroadCodesAndNamesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AARCarTypesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AARRegionsAndNamesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AARStatesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.OtherToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReportsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IndustriesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IndustriesByStateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IndustriesByStateWithCommoditiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CommoditiesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CommodityBalanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TrainsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TrainReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InboundTrainListByDepartureTimeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InboundTrainListByTrainIDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -92,16 +92,16 @@ Partial Class frmMain
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuFileSelectRailroad, Me.StartANewSessionToolStripMenuItem, Me.ToolStripSeparator4, Me.LoadSavedSessionToolStripMenuItem, Me.SaveCurrentSessionToolStripMenuItem, Me.ToolStripSeparator5, Me.ImportIndustryDataToolStripMenuItem, Me.ExportIndustryDataToolStripMenuItem, Me.ToolStripSeparator6, Me.CloseToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuFileSelectRailroad, Me.ToolStripSeparator4, Me.LoadSavedSessionToolStripMenuItem, Me.SaveCurrentSessionToolStripMenuItem, Me.ToolStripSeparator5, Me.ImportIndustryDataToolStripMenuItem, Me.ExportIndustryDataToolStripMenuItem, Me.ToolStripSeparator6, Me.CloseToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
         '
-        'StartANewSessionToolStripMenuItem
+        'mnuFileSelectRailroad
         '
-        Me.StartANewSessionToolStripMenuItem.Name = "StartANewSessionToolStripMenuItem"
-        Me.StartANewSessionToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
-        Me.StartANewSessionToolStripMenuItem.Text = "Start a New Session"
+        Me.mnuFileSelectRailroad.Name = "mnuFileSelectRailroad"
+        Me.mnuFileSelectRailroad.Size = New System.Drawing.Size(183, 22)
+        Me.mnuFileSelectRailroad.Text = "Select Railroad"
         '
         'ToolStripSeparator4
         '
@@ -154,10 +154,16 @@ Partial Class frmMain
         '
         'ProcessToolStripMenuItem
         '
-        Me.ProcessToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GenerateLocalIndustryWaybillsToolStripMenuItem, Me.FineTuneCurrentSessionToolStripMenuItem, Me.PrintDurrentSessionWaybillsToolStripMenuItem})
+        Me.ProcessToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StartANewSessionToolStripMenuItem, Me.GenerateLocalIndustryWaybillsToolStripMenuItem, Me.FineTuneCurrentSessionToolStripMenuItem, Me.PrintCurrentSessionWaybillsToolStripMenuItem})
         Me.ProcessToolStripMenuItem.Name = "ProcessToolStripMenuItem"
-        Me.ProcessToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
-        Me.ProcessToolStripMenuItem.Text = "Process"
+        Me.ProcessToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
+        Me.ProcessToolStripMenuItem.Text = "Create"
+        '
+        'StartANewSessionToolStripMenuItem
+        '
+        Me.StartANewSessionToolStripMenuItem.Name = "StartANewSessionToolStripMenuItem"
+        Me.StartANewSessionToolStripMenuItem.Size = New System.Drawing.Size(231, 22)
+        Me.StartANewSessionToolStripMenuItem.Text = "Start a New Session"
         '
         'GenerateLocalIndustryWaybillsToolStripMenuItem
         '
@@ -171,11 +177,11 @@ Partial Class frmMain
         Me.FineTuneCurrentSessionToolStripMenuItem.Size = New System.Drawing.Size(231, 22)
         Me.FineTuneCurrentSessionToolStripMenuItem.Text = "Fine-Tune Current Session"
         '
-        'PrintDurrentSessionWaybillsToolStripMenuItem
+        'PrintCurrentSessionWaybillsToolStripMenuItem
         '
-        Me.PrintDurrentSessionWaybillsToolStripMenuItem.Name = "PrintDurrentSessionWaybillsToolStripMenuItem"
-        Me.PrintDurrentSessionWaybillsToolStripMenuItem.Size = New System.Drawing.Size(231, 22)
-        Me.PrintDurrentSessionWaybillsToolStripMenuItem.Text = "Print Current Session Waybills"
+        Me.PrintCurrentSessionWaybillsToolStripMenuItem.Name = "PrintCurrentSessionWaybillsToolStripMenuItem"
+        Me.PrintCurrentSessionWaybillsToolStripMenuItem.Size = New System.Drawing.Size(231, 22)
+        Me.PrintCurrentSessionWaybillsToolStripMenuItem.Text = "Print Current Session Waybills"
         '
         'mnuCatalog
         '
@@ -356,7 +362,7 @@ Partial Class frmMain
         '
         'IndustriesToolStripMenuItem1
         '
-        Me.IndustriesToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IndustriesByStateToolStripMenuItem, Me.IndustriesByStataWithCommoditiesToolStripMenuItem})
+        Me.IndustriesToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IndustriesByStateToolStripMenuItem, Me.IndustriesByStateWithCommoditiesToolStripMenuItem})
         Me.IndustriesToolStripMenuItem1.Name = "IndustriesToolStripMenuItem1"
         Me.IndustriesToolStripMenuItem1.Size = New System.Drawing.Size(146, 22)
         Me.IndustriesToolStripMenuItem1.Text = "Industries"
@@ -367,11 +373,11 @@ Partial Class frmMain
         Me.IndustriesByStateToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
         Me.IndustriesByStateToolStripMenuItem.Text = "Industries by State"
         '
-        'IndustriesByStataWithCommoditiesToolStripMenuItem
+        'IndustriesByStateWithCommoditiesToolStripMenuItem
         '
-        Me.IndustriesByStataWithCommoditiesToolStripMenuItem.Name = "IndustriesByStataWithCommoditiesToolStripMenuItem"
-        Me.IndustriesByStataWithCommoditiesToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
-        Me.IndustriesByStataWithCommoditiesToolStripMenuItem.Text = "Industries by State With Commodities"
+        Me.IndustriesByStateWithCommoditiesToolStripMenuItem.Name = "IndustriesByStateWithCommoditiesToolStripMenuItem"
+        Me.IndustriesByStateWithCommoditiesToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
+        Me.IndustriesByStateWithCommoditiesToolStripMenuItem.Text = "Industries by State With Commodities"
         '
         'CommoditiesToolStripMenuItem1
         '
@@ -401,12 +407,14 @@ Partial Class frmMain
         '
         'InboundTrainListByDepartureTimeToolStripMenuItem
         '
+        Me.InboundTrainListByDepartureTimeToolStripMenuItem.Enabled = False
         Me.InboundTrainListByDepartureTimeToolStripMenuItem.Name = "InboundTrainListByDepartureTimeToolStripMenuItem"
         Me.InboundTrainListByDepartureTimeToolStripMenuItem.Size = New System.Drawing.Size(228, 22)
         Me.InboundTrainListByDepartureTimeToolStripMenuItem.Text = "Train List by Departure Time"
         '
         'InboundTrainListByTrainIDToolStripMenuItem
         '
+        Me.InboundTrainListByTrainIDToolStripMenuItem.Enabled = False
         Me.InboundTrainListByTrainIDToolStripMenuItem.Name = "InboundTrainListByTrainIDToolStripMenuItem"
         Me.InboundTrainListByTrainIDToolStripMenuItem.Size = New System.Drawing.Size(228, 22)
         Me.InboundTrainListByTrainIDToolStripMenuItem.Text = "Inbound Train List by Train ID"
@@ -417,18 +425,12 @@ Partial Class frmMain
         Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.OptionsToolStripMenuItem.Text = "Options"
         '
-        'mnuFileSelectRailroad
-        '
-        Me.mnuFileSelectRailroad.Name = "mnuFileSelectRailroad"
-        Me.mnuFileSelectRailroad.Size = New System.Drawing.Size(183, 22)
-        Me.mnuFileSelectRailroad.Text = "Select Railroad"
-        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1184, 862)
         Me.Controls.Add(Me.MenuStrip1)
         Me.DoubleBuffered = True
@@ -446,7 +448,6 @@ Partial Class frmMain
     End Sub
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents StartANewSessionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CloseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ProcessToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ReportsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -478,7 +479,7 @@ Partial Class frmMain
     Friend WithEvents ToolStripSeparator5 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents IndustriesToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents IndustriesByStateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents IndustriesByStataWithCommoditiesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents IndustriesByStateWithCommoditiesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CommoditiesToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CommodityBalanceToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents InterchangesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -495,8 +496,9 @@ Partial Class frmMain
     Friend WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents GenerateLocalIndustryWaybillsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FineTuneCurrentSessionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents PrintDurrentSessionWaybillsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents InboundTrainListByDepartureTimeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents InboundTrainListByTrainIDToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnuFileSelectRailroad As System.Windows.Forms.ToolStripMenuItem
+    Public WithEvents PrintCurrentSessionWaybillsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents StartANewSessionToolStripMenuItem As ToolStripMenuItem
 End Class

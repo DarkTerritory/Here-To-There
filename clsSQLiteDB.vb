@@ -1,12 +1,9 @@
-﻿
-Imports System
-Imports System.Collections.Generic
-Imports System.Data
-Imports System.Data.SQLite
-Imports System.Windows.Forms
+﻿Imports System.Data.SQLite
 
 Public Class clsSQLiteDB
 
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")>
+    <CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")>
     Public Shared Function GetDataTable(ByVal SQL As String, ByVal Conn As SQLiteConnection) As DataTable
 
         Dim dt As New DataTable
@@ -22,7 +19,7 @@ Public Class clsSQLiteDB
         Catch ex As Exception
             WriteLog("Error (GetDataTable):" & Date.Now.ToString & " | " & ex.Message)
             If Conn.State = ConnectionState.Open Then Conn.Close()
-            Stop
+            'Stop
 
         End Try
 
@@ -31,6 +28,8 @@ Public Class clsSQLiteDB
     End Function
 
 
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")>
+    <CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")>
     Public Shared Function ExecuteNonQuery(ByVal SQL As String, ByVal Conn As SQLiteConnection) As Integer
 
         Dim iRowsUpdated As Integer = 0
@@ -59,6 +58,8 @@ Public Class clsSQLiteDB
     End Function
 
 
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")>
+    <CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")>
     Public Shared Function ExecuteScalar(ByVal SQL As String, ByVal Conn As SQLiteConnection) As String
 
         Dim sDataValue As String = ""

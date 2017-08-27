@@ -1,9 +1,4 @@
-﻿Imports System.Windows.Forms
-Imports System
-Imports System.Data
-Imports System.Data.SqlClient
-
-Public Class frmMaintState
+﻿Public Class frmMaintState
 
     Private dtState As New DataTable
     Private dtRegion As New DataTable
@@ -250,7 +245,7 @@ Public Class frmMaintState
         GetState()
 
         dtRegion = DataAccess_Get.spGetAarRegNameCd()
- 
+
         cboAARRegion.DataSource = dtRegion
         cboAARRegion.DisplayMember = "AARRegName"
         cboAARRegion.ValueMember = "AARCode"

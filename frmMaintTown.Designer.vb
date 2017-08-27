@@ -1,9 +1,10 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMaintTown
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId:="dgrSelRow")>
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,50 +21,51 @@ Partial Class frmMaintTown
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMaintTown))
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel
-        Me.OK_Button = New System.Windows.Forms.Button
-        Me.lblTownState = New System.Windows.Forms.Label
-        Me.TxtTownCallSign = New System.Windows.Forms.TextBox
-        Me.cmdTownReset = New System.Windows.Forms.Button
-        Me.cmdTownHelp = New System.Windows.Forms.Button
-        Me.cmdTownSave = New System.Windows.Forms.Button
-        Me.cmdTownDelete = New System.Windows.Forms.Button
-        Me.cmdTownEdit = New System.Windows.Forms.Button
-        Me.cmdTownNew = New System.Windows.Forms.Button
-        Me.cboTownState = New System.Windows.Forms.ComboBox
-        Me.cboTownDiv = New System.Windows.Forms.ComboBox
-        Me.cboTownServedBy = New System.Windows.Forms.ComboBox
-        Me.lblTownDivision = New System.Windows.Forms.Label
-        Me.lblTownServedBy = New System.Windows.Forms.Label
-        Me.lblTownFreightHub = New System.Windows.Forms.Label
-        Me.lblTownCallSign = New System.Windows.Forms.Label
-        Me.lblTownName = New System.Windows.Forms.Label
-        Me.txtTownName = New System.Windows.Forms.TextBox
-        Me.dgvTown = New System.Windows.Forms.DataGridView
-        Me.TownName = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.TownID = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.TownState = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.TownCallSign = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.TownFrtHub = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.TownServedBy = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.TownDiv = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.TownEastOf = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.TownWestOf = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.TownLocal = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.cboTownFrtHub = New System.Windows.Forms.ComboBox
-        Me.txtTownID = New System.Windows.Forms.TextBox
-        Me.lblTownID = New System.Windows.Forms.Label
-        Me.cboTownLocal = New System.Windows.Forms.ComboBox
-        Me.lblTownLocal = New System.Windows.Forms.Label
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.OK_Button = New System.Windows.Forms.Button()
+        Me.lblTownState = New System.Windows.Forms.Label()
+        Me.TxtTownCallSign = New System.Windows.Forms.TextBox()
+        Me.cmdTownReset = New System.Windows.Forms.Button()
+        Me.cmdTownHelp = New System.Windows.Forms.Button()
+        Me.cmdTownSave = New System.Windows.Forms.Button()
+        Me.cmdTownDelete = New System.Windows.Forms.Button()
+        Me.cmdTownEdit = New System.Windows.Forms.Button()
+        Me.cmdTownNew = New System.Windows.Forms.Button()
+        Me.cboTownState = New System.Windows.Forms.ComboBox()
+        Me.cboTownDiv = New System.Windows.Forms.ComboBox()
+        Me.cboTownServedBy = New System.Windows.Forms.ComboBox()
+        Me.lblTownDivision = New System.Windows.Forms.Label()
+        Me.lblTownServedBy = New System.Windows.Forms.Label()
+        Me.lblTownFreightHub = New System.Windows.Forms.Label()
+        Me.lblTownCallSign = New System.Windows.Forms.Label()
+        Me.lblTownName = New System.Windows.Forms.Label()
+        Me.txtTownName = New System.Windows.Forms.TextBox()
+        Me.dgvTown = New System.Windows.Forms.DataGridView()
+        Me.TownName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TownID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TownState = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TownCallSign = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TownFrtHub = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TownServedBy = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TownDiv = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TownEastOf = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TownWestOf = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TownLocal = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Sidings = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cboTownFrtHub = New System.Windows.Forms.ComboBox()
+        Me.txtTownID = New System.Windows.Forms.TextBox()
+        Me.lblTownID = New System.Windows.Forms.Label()
+        Me.cboTownLocal = New System.Windows.Forms.ComboBox()
+        Me.lblTownLocal = New System.Windows.Forms.Label()
         Me.ttpMaintTown = New System.Windows.Forms.ToolTip(Me.components)
-        Me.lblEastOf = New System.Windows.Forms.Label
-        Me.lblWestOf = New System.Windows.Forms.Label
-        Me.cboTownEastOf = New System.Windows.Forms.ComboBox
-        Me.cboTownWestOf = New System.Windows.Forms.ComboBox
+        Me.lblEastOf = New System.Windows.Forms.Label()
+        Me.lblWestOf = New System.Windows.Forms.Label()
+        Me.cboTownEastOf = New System.Windows.Forms.ComboBox()
+        Me.cboTownWestOf = New System.Windows.Forms.ComboBox()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.dgvTown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -74,7 +76,7 @@ Partial Class frmMaintTown
         Me.TableLayoutPanel1.ColumnCount = 1
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(873, 507)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(957, 507)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -121,7 +123,7 @@ Partial Class frmMaintTown
         '
         Me.cmdTownHelp.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmdTownHelp.Enabled = False
-        Me.cmdTownHelp.Location = New System.Drawing.Point(751, 34)
+        Me.cmdTownHelp.Location = New System.Drawing.Point(835, 34)
         Me.cmdTownHelp.Name = "cmdTownHelp"
         Me.cmdTownHelp.Size = New System.Drawing.Size(78, 27)
         Me.cmdTownHelp.TabIndex = 64
@@ -138,7 +140,7 @@ Partial Class frmMaintTown
         'cmdTownDelete
         '
         Me.cmdTownDelete.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdTownDelete.Location = New System.Drawing.Point(873, 34)
+        Me.cmdTownDelete.Location = New System.Drawing.Point(957, 34)
         Me.cmdTownDelete.Name = "cmdTownDelete"
         Me.cmdTownDelete.Size = New System.Drawing.Size(78, 27)
         Me.cmdTownDelete.TabIndex = 62
@@ -253,15 +255,15 @@ Partial Class frmMaintTown
         Me.dgvTown.AllowUserToAddRows = False
         Me.dgvTown.AllowUserToDeleteRows = False
         Me.dgvTown.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgvTown.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TownName, Me.TownID, Me.TownState, Me.TownCallSign, Me.TownFrtHub, Me.TownServedBy, Me.TownDiv, Me.TownEastOf, Me.TownWestOf, Me.TownLocal})
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvTown.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TownName, Me.TownID, Me.TownState, Me.TownCallSign, Me.TownFrtHub, Me.TownServedBy, Me.TownDiv, Me.TownEastOf, Me.TownWestOf, Me.TownLocal, Me.Sidings})
         Me.dgvTown.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.dgvTown.Location = New System.Drawing.Point(42, 181)
         Me.dgvTown.MultiSelect = False
         Me.dgvTown.Name = "dgvTown"
         Me.dgvTown.RowHeadersVisible = False
-        Me.dgvTown.Size = New System.Drawing.Size(945, 306)
+        Me.dgvTown.Size = New System.Drawing.Size(1021, 306)
         Me.dgvTown.TabIndex = 50
         '
         'TownName
@@ -331,6 +333,14 @@ Partial Class frmMaintTown
         Me.TownLocal.HeaderText = "Local"
         Me.TownLocal.Name = "TownLocal"
         Me.TownLocal.Width = 75
+        '
+        'Sidings
+        '
+        Me.Sidings.DataPropertyName = "Sidings"
+        Me.Sidings.FillWeight = 75.0!
+        Me.Sidings.HeaderText = "Sidings"
+        Me.Sidings.Name = "Sidings"
+        Me.Sidings.Width = 75
         '
         'cboTownFrtHub
         '
@@ -422,7 +432,7 @@ Partial Class frmMaintTown
         Me.AcceptButton = Me.OK_Button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1031, 548)
+        Me.ClientSize = New System.Drawing.Size(1115, 548)
         Me.Controls.Add(Me.cboTownWestOf)
         Me.Controls.Add(Me.cboTownEastOf)
         Me.Controls.Add(Me.lblWestOf)
@@ -491,19 +501,19 @@ Partial Class frmMaintTown
     Friend WithEvents cboTownLocal As System.Windows.Forms.ComboBox
     Friend WithEvents lblTownLocal As System.Windows.Forms.Label
     Friend WithEvents ttpMaintTown As System.Windows.Forms.ToolTip
-    Friend WithEvents TownName As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TownID As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TownState As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TownCallSign As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TownFrtHub As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TownServedBy As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TownDiv As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TownEastOf As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TownWestOf As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TownLocal As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents lblEastOf As System.Windows.Forms.Label
     Friend WithEvents lblWestOf As System.Windows.Forms.Label
     Friend WithEvents cboTownEastOf As System.Windows.Forms.ComboBox
     Friend WithEvents cboTownWestOf As System.Windows.Forms.ComboBox
-
+    Friend WithEvents TownName As DataGridViewTextBoxColumn
+    Friend WithEvents TownID As DataGridViewTextBoxColumn
+    Friend WithEvents TownState As DataGridViewTextBoxColumn
+    Friend WithEvents TownCallSign As DataGridViewTextBoxColumn
+    Friend WithEvents TownFrtHub As DataGridViewTextBoxColumn
+    Friend WithEvents TownServedBy As DataGridViewTextBoxColumn
+    Friend WithEvents TownDiv As DataGridViewTextBoxColumn
+    Friend WithEvents TownEastOf As DataGridViewTextBoxColumn
+    Friend WithEvents TownWestOf As DataGridViewTextBoxColumn
+    Friend WithEvents TownLocal As DataGridViewTextBoxColumn
+    Friend WithEvents Sidings As DataGridViewTextBoxColumn
 End Class

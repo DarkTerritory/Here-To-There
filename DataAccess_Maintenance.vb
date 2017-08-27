@@ -1,6 +1,4 @@
-﻿Imports System.Data.SQLite
-
-Module DataAccess_Maintenance
+﻿Module DataAccess_Maintenance
 
 
     Public Function spMAarRegNameDelRec(ByRef AARCode As String) As Integer
@@ -522,23 +520,36 @@ Module DataAccess_Maintenance
     End Function
 
 
-    Public Function spMyRRUpdate(ByVal RRID As Integer, ByVal RRName As String, ByVal RRInitials As String, _
-                                     ByVal RRNickname As String, ByVal RRState As String, _
-                                     ByVal RREra As String, ByVal RROpSessionDate As String, _
-                                     ByVal RRPaperworkDate As String, ByVal RRPrototype As String) As Integer
+    Public Function spMyRRUpdate(ByVal RRID As Integer, ByVal RRName As String, ByVal RRInitials As String,
+                                     ByVal RRNickname As String, ByVal RRState As String,
+                                     ByVal RREra As String, ByVal RRPrototype As String) As Integer
 
-        Dim sSQL As String = "UPDATE MyRR SET RRID = '" & RRID & "', RRName = '" & RRName & "', RRInitials = '" & RRInitials & "', " & _
-            "RRNickname = '" & RRNickname & "', RRState = '" & RRState & "', RREra = '" & RREra & "', " & _
-            "RROpSessionDate = '" & RROpSessionDate & "', RRPaperworkDate = '" & RRPaperworkDate & "', " & _
-            "RRPrototype = '" & RRPrototype & "' WHERE RRID = '" & RRID & "';"
+        Dim sSQL As String = "UPDATE MyRR SET RRName = '" & RRName & "', RRInitials = '" & RRInitials & "', " &
+            "RRNickname = '" & RRNickname & "', RRState = '" & RRState & "', RREra = '" & RREra & "', RRPrototype = '" & RRPrototype & "' " &
+            "WHERE RRID = " & RRID & ";"
         Return clsSQLiteDB.ExecuteNonQuery(sSQL, cnHTT)
 
     End Function
 
 
+    Public Function spMyRRInsert(ByVal RRID As Integer, ByVal RRName As String, ByVal RRInitials As String,
+                                     ByVal RRNickname As String, ByVal RRState As String,
+                                     ByVal RREra As String, ByVal RRPrototype As String) As Integer
+
+        Dim sSQL As String = "INSERT INTO MyRR (RRID, RRName, RRInitials, RRNickname, RRState, RREra, RRPrototype)  " &
+            "VALUES ('" & RRID & "', '" & RRName & "', '" & RRInitials & "', '" & RRNickname & "', '" & RRState &
+            "', '" & RREra & "', '" & RRPrototype & "');"
+        Return clsSQLiteDB.ExecuteNonQuery(sSQL, cnHTT)
+
+    End Function
 
 
+    Public Function spMyRRDelete(ByVal RRID As Integer) As Integer
 
+        Dim sSQL As String = "DELETE FROM MyRR WHERE RRID = " & RRID & ";"
+        Return clsSQLiteDB.ExecuteNonQuery(sSQL, cnHTT)
+
+    End Function
 
 
 

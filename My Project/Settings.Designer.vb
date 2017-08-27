@@ -53,6 +53,16 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("data source=C:\ProgramData\AmesvilleShops\HereToThere.s3db")>  _
+        Public ReadOnly Property HereToThereConnectionString() As String
+            Get
+                Return CType(Me("HereToThereConnectionString"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

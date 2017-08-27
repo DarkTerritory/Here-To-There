@@ -1,8 +1,4 @@
-﻿Imports System
-Imports System.Data
-Imports System.Data.OleDb
-Imports System.Windows.Forms
-Imports System.Data.SQLite
+﻿Imports System.Data.OleDb
 
 Public Class frmMain
 
@@ -25,9 +21,9 @@ Public Class frmMain
 
     Private Sub StartANewSessionToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StartANewSessionToolStripMenuItem.Click
 
-        mbResponse = MsgBox("This will wipe out all existing waybill data and allow you to select " & _
-                            "a new group of waybills from the catalog for an operating session. " & _
-                            "Click OK to proceed. This process cannot be undone once started.", _
+        mbResponse = MsgBox("This will wipe out all existing waybill data and allow you to select " &
+                            "a new group of waybills from the catalog for an operating session. " &
+                            "Click OK to proceed. This process cannot be undone once started.",
                             MsgBoxStyle.OkCancel, "Warning - About to Destroy Existing Data")
 
         If mbResponse = MsgBoxResult.Cancel Then Exit Sub
@@ -165,14 +161,15 @@ Public Class frmMain
     'Private Sub IndustriesByStateToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IndustriesByStateToolStripMenuItem.Click
 
     '    Dim objPS As New System.Drawing.Printing.PrinterSettings
-    '    Dim frmRptView As New frmReportView
-    '    Dim rptFile As New Here_To_There.IndByState
+    '    Dim frmRptView As New frmReportViewer
+    '    Dim rptFile As New CrystalDecisions.CrystalReports.Engine.ReportDocument
 
+    '    rptFile.Load(Application.ExecutablePath & "\Reports\IndByState.rpt")
     '    dtReport = DataAccess_Misc.spMainRptIndByState
     '    rptFile.PrintOptions.PrinterName = objPS.PrinterName
     '    rptFile.SetDataSource(dtReport)
-    '    frmRptView.HereToThereReportViewer.ReportSource = rptFile
-    '    frmRptView.HereToThereReportViewer.Dock = DockStyle.Fill
+    '    frmRptView.crvIndsWithComms.ReportSource = rptFile
+    '    frmRptView.crvIndsWithComms.Dock = DockStyle.Fill
     '    frmRptView.Show()
 
     '    'rptFile.PrintToPrinter(1, False, 0, 0)
@@ -180,48 +177,72 @@ Public Class frmMain
     'End Sub
 
 
-    'Private Sub IndustriesByStataWithCommoditiesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IndustriesByStataWithCommoditiesToolStripMenuItem.Click
+    Private Sub IndustriesByStateWithCommoditiesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IndustriesByStateWithCommoditiesToolStripMenuItem.Click
 
-    '    Dim objPS As New System.Drawing.Printing.PrinterSettings
-    '    Dim frmRptView As New frmReportView
-    '    Dim rptFile As New Here_To_There.IndByStateWComms
+        Dim frmRptView As New frmReportView
+        Dim rptFile As ReportDocument
+        Dim dtDT As DataTable
 
-    '    dtReport = DataAccess_Misc.spMainRptIndByStateWComm()
-    '    rptFile.PrintOptions.PrinterName = objPS.PrinterName
-    '    rptFile.SetDataSource(dtReport)
-    '    frmRptView.HereToThereReportViewer.ReportSource = rptFile
-    '    frmRptView.HereToThereReportViewer.Dock = DockStyle.Fill
-    '    frmRptView.Show()
+        dtDT = DataAccess_Misc.spIndsWithCommsState
+        dtDT.TableName = "Industry1"
 
-    'End Sub
+        frmRptView = New frmReportView
+        rptFile = New CrystalDecisions.CrystalReports.Engine.ReportDocument
+        rptFile.Load(Application.StartupPath & "\Reports\IndsWithComms.rpt")
+        frmRptView.crvReport.ReportSource = rptFile
 
-    'Private Sub CommodityBalanceToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CommodityBalanceToolStripMenuItem.Click
+        rptFile.SetParameterValue("Railroad_ID", 1)
+        rptFile.SetDataSource(dtDT)
 
-    '    Dim objPS As New System.Drawing.Printing.PrinterSettings
-    '    Dim frmRptView As New frmReportView
-    '    Dim rptFile As New Here_To_There.CommBalance
+        frmRptView.Show()
 
-    '    dtReport = DataAccess_Misc.spMainRptCommBal()
-    '    rptFile.PrintOptions.PrinterName = objPS.PrinterName
-    '    rptFile.SetDataSource(dtReport)
-    '    frmRptView.HereToThereReportViewer.ReportSource = rptFile
-    '    frmRptView.HereToThereReportViewer.Dock = DockStyle.Fill
-    '    frmRptView.Show()
+        'rptFile.PrintToPrinter(1, False, 0, 0)
 
-    'End Sub
+    End Sub
+
+
+    Private Sub CommodityBalanceToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CommodityBalanceToolStripMenuItem.Click
+
+        Dim frmRptView As New frmReportView
+        Dim rptFile As ReportDocument
+
+        frmRptView = New frmReportView
+        rptFile = New CrystalDecisions.CrystalReports.Engine.ReportDocument
+        rptFile.Load(Application.StartupPath & "\Reports\IndsWithComms.rpt")
+        rptFile.SetParameterValue("Railroad_ID", "1")
+        'rptFile.SetParameterValue("Railroad_ID", gsMyRR_ID)
+        frmRptView.crvReport.ReportSource = rptFile
+        frmRptView.Show()
+
+
+        '    Dim objPS As New System.Drawing.Printing.PrinterSettings
+        '    Dim frmRptView As New frmReportViewer
+        '    Dim rptFile As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+
+        '    rptFile.Load(Application.ExecutablePath & "\Reports\CommBalance.rpt")
+        '    dtReport = DataAccess_Misc.spMainRptCommBal()
+        '    rptFile.PrintOptions.PrinterName = objPS.PrinterName
+        '    rptFile.SetDataSource(dtReport)
+        '    frmRptView.crvIndsWithComms.ReportSource = rptFile
+        '    frmRptView.crvIndsWithComms.Dock = DockStyle.Fill
+        '    frmRptView.Show()
+
+    End Sub
 
 
     'Private Sub TrainReportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TrainReportToolStripMenuItem.Click
 
     '    Dim objPS As New System.Drawing.Printing.PrinterSettings
-    '    Dim frmRptView As New frmReportView
-    '    Dim rptFile As New Here_To_There.TrainReport
+    '    Dim frmRptView As New frmReportViewer
+    '    Dim rptFile As New CrystalDecisions.CrystalReports.Engine.ReportDocument
 
-    '    'dtReport = DataAccess_Report.spTrainReport
+
+    '    rptFile.Load(Application.ExecutablePath & "\Reports\TrainReport.rpt")
+    '    dtReport = DataAccess_Misc.spTrainReport
     '    rptFile.PrintOptions.PrinterName = objPS.PrinterName
     '    rptFile.SetDataSource(dtReport)
-    '    frmRptView.HereToThereReportViewer.ReportSource = rptFile
-    '    frmRptView.HereToThereReportViewer.Dock = DockStyle.Fill
+    '    frmRptView.crvIndsWithComms.ReportSource = rptFile
+    '    frmRptView.crvIndsWithComms.Dock = DockStyle.Fill
     '    frmRptView.Show()
 
     'End Sub
@@ -397,16 +418,16 @@ Public Class frmMain
     End Sub
 
 
-    'Private Sub PrintGeneratedSessionWaybillsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub PrintGeneratedSessionWaybillsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
-    '    mbResponse = MsgBox("Please confirm that you have completed assigning waybills to trains by clicking Yes below. If not, click No to go back and finish.", MsgBoxStyle.YesNo, "Confirm Assignments are Completed")
-    '    If mbResponse = MsgBoxResult.No Then Exit Sub
+        mbResponse = MsgBox("Please confirm that you have completed assigning waybills to trains by clicking Yes below. If not, click No to go back and finish.", MsgBoxStyle.YesNo, "Confirm Assignments are Completed")
+        If mbResponse = MsgBoxResult.No Then Exit Sub
 
-    '    Dim MDIFrmWaybillView As New frmWaybillView
-    '    MDIFrmWaybillView.MdiParent = Me
-    '    MDIFrmWaybillView.Show()
+        Dim MDIFrmWaybillView As New frmWaybillView
+        MDIFrmWaybillView.MdiParent = Me
+        MDIFrmWaybillView.Show()
 
-    'End Sub
+    End Sub
 
 
     Private Sub GenerateLocalIndustryWaybillsToolStripMenuItem_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GenerateLocalIndustryWaybillsToolStripMenuItem.Click
@@ -425,27 +446,32 @@ Public Class frmMain
 
     End Sub
 
-    'Private Sub PrintDurrentSessionWaybillsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintDurrentSessionWaybillsToolStripMenuItem.Click
+    Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-    '    Dim MDIfrmWaybillView As New frmWaybillView
-    '    MDIfrmWaybillView.MdiParent = Me
-    '    MDIfrmWaybillView.Show()
+    End Sub
 
-    'End Sub
+    Private Sub PrintCurrentSessionWaybillsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintCurrentSessionWaybillsToolStripMenuItem.Click
+
+        Dim MDIfrmWaybillView As New frmWaybillView
+        MDIfrmWaybillView.MdiParent = Me
+        MDIfrmWaybillView.Show()
+
+    End Sub
 
 
     'Private Sub InboundTrainListByTrainIDToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles InboundTrainListByTrainIDToolStripMenuItem.Click
 
     '    Dim objPS As New System.Drawing.Printing.PrinterSettings
-    '    Dim frmRptView As New frmReportView
-    '    Dim rptFile As New Here_To_There.TrainListByID
+    '    Dim frmRptView As New frmReportViewer
+    '    Dim rptFile As New CrystalDecisions.CrystalReports.Engine.ReportDocument
 
+    '    rptFile.Load(Application.ExecutablePath & "\Reports\TrainListByID.rpt")
     '    'TODO: Find Stored Proc for this report - Access?
-    '    'dtReport = DataAccess_Report.spGenRptTrainLstByID
+    '    'dtReport = DataAccess_Misc.spGenRptTrainListByID
     '    rptFile.PrintOptions.PrinterName = objPS.PrinterName
     '    rptFile.SetDataSource(dtReport)
-    '    frmRptView.HereToThereReportViewer.ReportSource = rptFile
-    '    frmRptView.HereToThereReportViewer.Dock = DockStyle.Fill
+    '    frmRptView.crvIndsWithComms.ReportSource = rptFile
+    '    frmRptView.crvIndsWithComms.Dock = DockStyle.Fill
     '    frmRptView.Show()
 
     'End Sub
@@ -453,15 +479,16 @@ Public Class frmMain
     'Private Sub InboundTrainListByDepartureTimeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles InboundTrainListByDepartureTimeToolStripMenuItem.Click
 
     '    Dim objPS As New System.Drawing.Printing.PrinterSettings
-    '    Dim frmRptView As New frmReportView
-    '    Dim rptFile As New Here_To_There.TrainListByDeparture
+    '    Dim frmRptView As New frmReportViewer
+    '    Dim rptFile As New CrystalDecisions.CrystalReports.Engine.ReportDocument
 
+    '    rptFile.Load(Application.ExecutablePath & "\Reports\TrainListByDeparture.rpt")
     '    'TODO: Find Stored Proc for this report - Access?
     '    'dtReport = DataAccess_Report.[spGenRptTrainLstByDepart]
     '    rptFile.PrintOptions.PrinterName = objPS.PrinterName
     '    rptFile.SetDataSource(dtReport)
-    '    frmRptView.HereToThereReportViewer.ReportSource = rptFile
-    '    frmRptView.HereToThereReportViewer.Dock = DockStyle.Fill
+    '    frmRptView.crvIndsWithComms.ReportSource = rptFile
+    '    frmRptView.crvIndsWithComms.Dock = DockStyle.Fill
     '    frmRptView.Show()
 
     'End Sub
